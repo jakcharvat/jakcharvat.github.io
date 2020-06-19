@@ -1,7 +1,9 @@
+import { getProjects } from './projects.js'
+
 const swup = new Swup()
 
 swup.on('contentReplaced', activateLink)
-document.onload = activateLink
+window.onload = activateLink
 
 const links = Array.from(document.getElementById('nav').children).filter(el => {
     return el.tagName == 'A'
@@ -37,5 +39,10 @@ function activateLink() {
         document.body.className = 'root-page'
     } else {
         document.body.className = ''
+    }
+
+
+    if (address === '/projects/') {
+        getProjects()
     }
 }

@@ -1,0 +1,11 @@
+[
+    {
+        "title": "Bootstrap Experiments",
+        "url": "bootstrap/",
+        "repoURL": "https://github.com/jakcharvat/bootstrap-experiments",
+        "lowResImage": "Bootstrap_low.png",
+        "highResImage": "Bootstrap_high.png",
+        "tags": ["Bootstrap", "HTML", "CSS", "JavaScript"],
+        "description": "This is a collection of my experiments with Bootstrap Studio for responsive design and integration with native JavaScript and CSS. "
+    }
+]

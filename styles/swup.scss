@@ -1,0 +1,16 @@
+.transition-main {
+    transition: 0.35s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.is-animating .transition-main {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition-timing-function: ease-out;
+}
+
+html.is-animating.is-leaving .transition-main {
+    transform: translateY(40px);
+    transition-timing-function: ease-in;
+}

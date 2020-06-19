@@ -1,0 +1,249 @@
+h1 {
+  color: var(--primary-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  cursor: default;
+}
+h1.burger {
+  color: var(--background-color);
+}
+
+h2 {
+  color: var(--background-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 3em;
+  font-weight: 900;
+  text-align: center;
+  z-index: 3;
+  pointer-events: none;
+  margin: 0;
+}
+
+p {
+  color: var(--alternate-opposite-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+:root {
+  /* -------------------------------------------------------------------------------------------------------- */
+  /*                                              Primary Swatch                                              */
+  /* -------------------------------------------------------------------------------------------------------- */
+  /* -------------------------------------------------- hex ------------------------------------------------- */
+  --Primary-1-hex: #5E251F;
+  --Primary-2-hex: #9E3F34;
+  --Primary-3-hex: #C74F41;
+  --Primary-4-hex: #DE5849;
+  --Primary-5-hex: #EB5D4D;
+  /* ------------------------------------------------- rgba ------------------------------------------------- */
+  --Primary-1-rgb: 94, 37, 31;
+  --Primary-2-rgb: 158, 63, 52;
+  --Primary-3-rgb: 199, 79, 65;
+  --Primary-4-rgb: 222, 88, 73;
+  --Primary-5-rgb: 235, 93, 77;
+  /* ------------------------------------------------- hsla ------------------------------------------------- */
+  --Primary-1-hsl: 5, 50, 24;
+  --Primary-2-hsl: 6, 50, 41;
+  --Primary-3-hsl: 6, 54, 51;
+  --Primary-4-hsl: 6, 69, 57;
+  --Primary-5-hsl: 6, 79, 61;
+  /* -------------------------------------------------------------------------------------------------------- */
+  /*                                                Base Color                                                */
+  /* -------------------------------------------------------------------------------------------------------- */
+  /* -------------------------------------------------- hex ------------------------------------------------- */
+  --Base-1-hex: #222222;
+  --Base-2-hex: #333333;
+  --Base-3-hex: #888888;
+  --Base-4-hex: #DDDDDD;
+  --Base-5-hex: #EEEEEE;
+  /* ------------------------------------------------- rgba ------------------------------------------------- */
+  --Base-1-rgb: 34, 34, 34;
+  --Base-2-rgb: 51, 51, 51;
+  --Base-3-rgb: 136, 136, 136;
+  --Base-4-rgb: 221, 221, 221;
+  --Base-5-rgb: 238, 238, 238;
+  /* ------------------------------------------------- hsla ------------------------------------------------- */
+  --Base-1-hsl: 0, 0, 13;
+  --Base-2-hsl: 0, 0, 20;
+  --Base-3-hsl: 0, 0, 53;
+  --Base-4-hsl: 0, 0, 86;
+  --Base-5-hsl: 0, 0, 93;
+  /* -------------------------------------------------------------------------------------------------------- */
+  /*                                            Environment Colors                                            */
+  /* -------------------------------------------------------------------------------------------------------- */
+  --primary-color: var(--Primary-4-hex);
+  --background-color: var(--Base-5-hex);
+  --alternate-background-color: rgba(var(--Base-4-rgb), 0.3);
+  --opposite-color: var(--Base-1-hex);
+  --alternate-opposite-color: var(--Base-2-hex);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --background-color: var(--Base-1-hex);
+    --opposite-color: var(--Base-5-hex);
+    --alternate-background-color: var(--Base-2-hex);
+    --alternate-opposite-color: var(--Base-4-hex);
+  }
+}
+.transition-main {
+  transition: 0.35s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.is-animating .transition-main {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition-timing-function: ease-out;
+}
+
+html.is-animating.is-leaving .transition-main {
+  transform: translateY(40px);
+  transition-timing-function: ease-in;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#logo {
+  font-size: 28px;
+  font-weight: 900;
+  font-family: futura-pt, "Futura", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+  color: var(--primary-color);
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.root-page #logo {
+  cursor: default;
+  opacity: 0;
+}
+
+html body {
+  background: var(--background-color);
+  transition: background 0.3s ease;
+}
+html body.root-page {
+  background: var(--primary-color);
+}
+html body:not(.root-page) .nav-item {
+  color: var(--opposite-color);
+}
+html body:not(.root-page) .nav-item::before {
+  background-color: var(--primary-color);
+  opacity: 0.4;
+  z-index: -1;
+}
+html .root-page h1 {
+  color: var(--background-color);
+}
+html .content {
+  position: relative;
+  left: 50vw;
+  top: 100px;
+  transform: translateX(-50%);
+  padding: 30px 0;
+}
+html .content.content--about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 850px;
+}
+html .content.content--about p {
+  margin-top: 30px;
+}
+html .content.content--centred {
+  position: fixed;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+html h1 {
+  color: var(--opposite-color);
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+html nav {
+  position: fixed;
+  left: 0;
+  top: 50vh;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+html nav .nav-item {
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 6px 0 6px 20px;
+  padding: 0 3px;
+  color: var(--background-color);
+  text-transform: lowercase;
+  position: relative;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.3s ease;
+  opacity: 0.7;
+}
+html nav .nav-item::before {
+  content: "";
+  width: 100%;
+  top: 60%;
+  height: 40%;
+  background: var(--background-color);
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+html nav .nav-item.active::before {
+  transform: scaleX(1);
+}
+html nav .nav-item:not(.active):hover, html nav .nav-item.active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1250px) {
+  html .content--about {
+    left: 200px;
+    transform: translate(0);
+    width: calc(100% - 230px);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

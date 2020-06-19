@@ -1,0 +1,53 @@
+@mixin main-header {
+    color: var(--primary-color);
+    font-family: futura-pt, 'Futura', sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    cursor: default;
+}
+
+@mixin paragraph-style {
+    color: var(--alternate-opposite-color);
+    font-family: futura-pt, 'Futura', sans-serif;
+    font-size: 1.1rem;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+@mixin card-header {
+    color: var(--primary-color);
+    font-family: futura-pt, 'Futura', sans-serif;
+    font-size: 3em;
+    text-align: start;
+    cursor: default;
+}
+
+@mixin card-description {
+    padding-top: 30px;
+    color: var(--alternate-opposite-color);
+    font-size: 1.3em;
+    font-family: futura-pt, 'Futura', sans-serif;
+}
+
+h1 {
+    @include main-header;
+
+    &.burger {
+        color: var(--background-color);
+    }
+}
+
+h2 {
+    color: var(--background-color);
+    font-family: futura-pt, 'Futura', sans-serif;
+    font-size: 3em;
+    font-weight: 900;
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+    margin: 0;
+}
+
+p {
+    @include paragraph-style()
+}

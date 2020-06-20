@@ -49,12 +49,14 @@ function fetchFullresImages() {
 
         const lowresImgEl = Array.from(container.children)[0]
 
-        setTimeout(() => {
-            imgEl.classList.add('shown')
-            lowresImgEl.classList.add('hidden')
-
-            setTimeout(() => lowresImgEl.remove(), 300)
-        }, 10)
+        imgEl.onload = () => {
+            setTimeout(() => {
+                imgEl.classList.add('shown')
+                lowresImgEl.classList.add('hidden')
+    
+                setTimeout(() => lowresImgEl.remove(), 300)
+            }, 10)
+        }
     })
 }
 

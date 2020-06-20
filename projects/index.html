@@ -18,7 +18,30 @@
     </nav>
 
     <main id="swup" class="transition-main">
-        <h1 class="content content--centred">my projects</h1>
+        <div class="content content--projects">
+            <h1>my projects</h1>
+    
+            <div class="projects-grid" id="projectsGrid">
+                <template id="project-template">
+                    <div class="project">
+                        <div class="project-image">
+                            <img src="{{LowresURL}}" class="lowres">
+                            <img class="highres">
+                        </div>
+                        <div class="project-detail-col">
+                            <div class="project-detail-col--top-aligned">
+                                <div class="project-detail-row project-detail-row--title">
+                                    <a href="{{URL}}" class="project-title">{{Title}}</a>
+                                    <a href="{{RepoURL}}">Repo</a>
+                                </div>
+                                <p>{{Description}}</p>
+                            </div>
+                            <div class="project-detail-row project-detail-row--tags">{{Tags}}</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
     </main>
 
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>

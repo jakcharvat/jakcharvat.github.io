@@ -5,7 +5,16 @@
         "repoURL": "https://github.com/jakcharvat/bootstrap-experiments",
         "lowResImage": "Bootstrap_low.png",
         "highResImage": "Bootstrap_high.png",
-        "tags": ["Bootstrap", "HTML", "CSS", "JavaScript"],
+        "tags": ["Bootstrap", "web", "HTML", "CSS", "JavaScript"],
         "description": "This is a collection of my experiments with Bootstrap Studio for responsive design and integration with native JavaScript and CSS. "
+    },
+    {
+        "title": "NIM",
+        "url": "sticks/",
+        "repoURL": "https://github.com/jakcharvat/sticks",
+        "lowResImage": "Nim_low.png",
+        "highResImage": "Nim_high.png",
+        "tags": ["Flutter", "Dart", "iOS", "android", "macOS", "web", "cross-platform"],
+        "description": "This is a Flutter implementation of the classic mathematical Nim game. Complete with an AI opponent, options to start first or second, as well as the option to play against a human player. "
     }
 ]

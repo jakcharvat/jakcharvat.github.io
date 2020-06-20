@@ -1,13 +1,14 @@
 import { getProjects } from './projects.js'
 
+// @ts-ignore
 const swup = new Swup()
 
 swup.on('contentReplaced', activateLink)
 window.onload = activateLink
 
-const links = Array.from(document.getElementById('nav').children).filter(el => {
+const links = Array.from(document.getElementById('nav').children).filter((el: HTMLElement) => {
     return el.tagName == 'A'
-})
+}) as HTMLAnchorElement[]
 
 
 /**

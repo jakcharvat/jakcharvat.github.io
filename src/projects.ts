@@ -1,17 +1,17 @@
+const images = []
+
 async function getProjects() {
     const projectsFile = await fetch('../projects/projects.json')
     const projects = await projectsFile.json()
 
     const containerElement = document.getElementById('projectsGrid')
 
-    const templateEl = document.getElementById('project-template')
+    const templateEl = document.getElementById('project-template') as HTMLTemplateElement
     const projectTemplateEl = templateEl.content.children[0]
-    console.log(projectTemplateEl)
 
     for (const project of projects) {
-        const projectEl = projectTemplateEl.cloneNode(true)
+        const projectEl = projectTemplateEl.cloneNode(true) as HTMLElement
 
-        const tagContainer = document.createElement('div')
         const tags = (project['tags'] ?? []).map(tag => {
             return `<div class="project-tag">${tag}</div>`
         }).join('\n')
@@ -25,12 +25,37 @@ async function getProjects() {
             .replace('{{Tags}}', tags)
             .replace('{{URL}}', project['url'])
 
-        console.log(projectInnerEl)
-
         projectEl.innerHTML = projectInnerEl
         containerElement.appendChild(projectEl)
+
+        images.push({
+            url: project['highResImage'],
+            imageContainerEl: Array.from(projectEl.children).filter(el => el.className == 'project-image')[0]
+        })
     }
+
+    fetchFullresImages()
 }
 
+function fetchFullresImages() {
+    images.forEach(img => {
+        const imgName: string = img['url']
+        const container: HTMLElement = img['imageContainerEl']
+
+        const imgEl = new Image()
+        imgEl.src = `images/${imgName}`
+        imgEl.className = 'highres'
+        container.appendChild(imgEl)
+
+        const lowresImgEl = Array.from(container.children)[0]
+
+        setTimeout(() => {
+            imgEl.classList.add('shown')
+            lowresImgEl.classList.add('hidden')
+
+            setTimeout(() => lowresImgEl.remove(), 300)
+        }, 10)
+    })
+}
 
 export { getProjects }

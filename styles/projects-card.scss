@@ -25,13 +25,24 @@
                 height: 200px;
                 position: absolute;
                 top: 0px;
+                object-fit: contain;
 
                 &.lowres {
                     filter: blur(10px);
+                    transition: opacity, 0.3s ease;
+
+                    &.hidden {
+                        opacity: 0;
+                    }
                 }
 
                 &.highres {
                     opacity: 0;
+                    transition: opacity 0.3s ease;
+
+                    &.shown {
+                        opacity: 1;
+                    }
                 }
             }
         }

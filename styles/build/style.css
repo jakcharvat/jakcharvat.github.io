@@ -389,6 +389,7 @@ html .content.content--projects .project .project-detail-col .project-detail-row
   /* Internet Explorer/Edge */
   user-select: none;
   cursor: pointer;
+  text-transform: lowercase;
 }
 html .content.content--projects .project .project-detail-col p {
   margin-top: 15px;

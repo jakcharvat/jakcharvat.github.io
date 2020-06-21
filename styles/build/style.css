@@ -510,7 +510,7 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
   html nav {
     flex-direction: row;
     bottom: -100px;
-    top: auto;
+    top: initial;
     left: 0;
     right: 0;
     background: var(--background-color);
@@ -561,6 +561,10 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
 
   html .content.content--about p {
     margin-top: 10px;
+  }
+
+  html .content.content--centred {
+    transform: translate(-50%, -50%) translateY(-64px);
   }
 
   #logo {

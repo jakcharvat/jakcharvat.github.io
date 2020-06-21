@@ -535,6 +535,7 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
   }
   html nav .nav-item {
     margin: 8px;
+    z-index: 3;
   }
 
   html body.root-page nav {

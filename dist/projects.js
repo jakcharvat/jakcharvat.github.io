@@ -7,6 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+let hasAnimationInFinished = false;
+let hasLoadedProjects = false;
 const images = [];
 function getProjects() {
     var _a;
@@ -36,10 +38,17 @@ function getProjects() {
                 imageContainerEl: Array.from(projectEl.children).filter(el => el.className == 'project-image')[0]
             });
         }
+        hasLoadedProjects = true;
         fetchFullresImages();
     });
 }
+function projectsAnimationInDone() {
+    hasAnimationInFinished = true;
+    fetchFullresImages();
+}
 function fetchFullresImages() {
+    if (!(hasAnimationInFinished && hasLoadedProjects))
+        return;
     images.forEach(img => {
         const imgName = img['url'];
         const container = img['imageContainerEl'];
@@ -57,4 +66,8 @@ function fetchFullresImages() {
         };
     });
 }
-export { getProjects };
+function prepareForProjectLoad() {
+    hasLoadedProjects = false;
+    hasAnimationInFinished = false;
+}
+export { getProjects, projectsAnimationInDone, prepareForProjectLoad };

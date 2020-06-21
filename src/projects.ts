@@ -1,3 +1,6 @@
+let hasAnimationInFinished = false
+let hasLoadedProjects = false
+
 const images = []
 
 async function getProjects() {
@@ -34,10 +37,19 @@ async function getProjects() {
         })
     }
 
+    hasLoadedProjects = true
+    fetchFullresImages()
+}
+
+
+function projectsAnimationInDone() {
+    hasAnimationInFinished = true
     fetchFullresImages()
 }
 
 function fetchFullresImages() {
+    if (!(hasAnimationInFinished && hasLoadedProjects)) return;
+
     images.forEach(img => {
         const imgName: string = img['url']
         const container: HTMLElement = img['imageContainerEl']
@@ -60,4 +72,10 @@ function fetchFullresImages() {
     })
 }
 
-export { getProjects }
+
+function prepareForProjectLoad() {
+    hasLoadedProjects = false
+    hasAnimationInFinished = false
+}
+
+export { getProjects, projectsAnimationInDone, prepareForProjectLoad }

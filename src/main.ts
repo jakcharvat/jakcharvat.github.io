@@ -1,10 +1,14 @@
-import { getProjects } from './projects.js'
+import { getProjects, projectsAnimationInDone, prepareForProjectLoad } from './projects.js'
 
 // @ts-ignore
 const swup = new Swup()
 
+swup.on('animationInDone', animationInDone)
 swup.on('contentReplaced', activateLink)
-window.onload = activateLink
+window.onload = () => {
+    activateLink()
+    animationInDone()
+}
 
 const links = Array.from(document.getElementById('nav').children).filter((el: HTMLElement) => {
     return el.tagName == 'A'
@@ -44,6 +48,14 @@ function activateLink() {
 
 
     if (address === '/projects/') {
+        prepareForProjectLoad()
         getProjects()
+    }
+}
+
+
+function animationInDone() {
+    if (window.location.pathname === '/projects/') {
+        projectsAnimationInDone()
     }
 }

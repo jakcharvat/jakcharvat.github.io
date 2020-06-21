@@ -99,6 +99,7 @@
                     font-weight: 200;
                     @include user-select-none();
                     cursor: pointer;
+                    text-transform: lowercase;
                 }
             }
 

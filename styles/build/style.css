@@ -94,6 +94,7 @@ p .link:hover::before {
   --primary-color: var(--Primary-4-hex);
   --primary-color-rgb: var(--Primary-4-rgb);
   --background-color: var(--Base-5-hex);
+  --background-color-rgb: var(--Base-5-rgb);
   --alternate-background-color: rgba(var(--Base-4-rgb), 0.3);
   --opposite-color: var(--Base-1-hex);
   --alternate-opposite-color: var(--Base-2-hex);
@@ -102,6 +103,7 @@ p .link:hover::before {
 @media screen and (prefers-color-scheme: dark) {
   :root {
     --background-color: var(--Base-1-hex);
+    --background-color-rgb: var(--Base-1-rgb);
     --opposite-color: var(--Base-5-hex);
     --alternate-background-color: var(--Base-2-hex);
     --alternate-opposite-color: var(--Base-4-hex);
@@ -389,6 +391,7 @@ html .content.content--projects .project .project-detail-col .project-detail-row
   /* Internet Explorer/Edge */
   user-select: none;
   cursor: pointer;
+  text-transform: lowercase;
 }
 html .content.content--projects .project .project-detail-col p {
   margin-top: 15px;

@@ -460,17 +460,6 @@ html nav {
   flex-direction: column;
   align-items: flex-start;
   z-index: 2;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
 }
 html nav .nav-item {
   font-family: futura-pt, "Futura", sans-serif;
@@ -565,7 +554,9 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
     right: 0;
     bottom: 0;
     background: linear-gradient(rgba(var(--background-color-rgb), 0), rgba(var(--background-color-rgb), 0.8) 40px);
+    opacity: 0;
     z-index: -1;
+    animation: fadeIn 0.01s linear 0.3s 1 forwards;
   }
 
   html .content.content--about p {
@@ -584,6 +575,14 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
 @media screen and (max-width: 365px) {
   html nav .nav-item {
     font-size: 14px;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

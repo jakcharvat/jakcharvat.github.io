@@ -119,6 +119,12 @@
         }
     }
 
+    @media screen and (max-width: 1150px) {
+        .project .project-detail-col {
+            max-width: initial;
+        }
+    }
+
     @media screen and (max-width: 950px) {
         .project .project-image {
             width: 200px;

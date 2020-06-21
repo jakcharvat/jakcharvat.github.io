@@ -571,6 +571,37 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
     z-index: 0;
   }
 }
+noscript .noscript-content {
+  background: var(--background-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+noscript .noscript-content::before {
+  content: "";
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: -1;
+  background: rgba(var(--primary-color-rgb), 0.3);
+  border-radius: 10px;
+}
+noscript .noscript-content h1 {
+  font-size: 2em;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 750px) {
+  noscript .noscript-content {
+    margin: 30px 20px 0 20px;
+  }
+}
 @media screen and (max-width: 414px) {
   html h1 {
     font-size: 2.5rem;

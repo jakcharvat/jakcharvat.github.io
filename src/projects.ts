@@ -12,6 +12,8 @@ async function getProjects() {
     const templateEl = document.getElementById('project-template') as HTMLTemplateElement
     const projectTemplateEl = templateEl.content.children[0]
 
+    document.getElementById('placeholder').remove()
+
     for (const project of projects) {
         const projectEl = projectTemplateEl.cloneNode(true) as HTMLElement
 

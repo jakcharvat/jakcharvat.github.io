@@ -3,6 +3,7 @@
 @use 'swup.scss';
 @import 'project-card.scss';
 @import 'mixins.scss';
+@import 'noscript.scss';
 
 * {
     padding: 0;
@@ -232,6 +233,9 @@ html {
         z-index: 0;
     }
 }
+
+
+@include noscript-style();
 
 
 @media screen and (max-width: 414px) {

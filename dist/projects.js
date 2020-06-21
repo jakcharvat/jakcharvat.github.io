@@ -18,6 +18,7 @@ function getProjects() {
         const containerElement = document.getElementById('projectsGrid');
         const templateEl = document.getElementById('project-template');
         const projectTemplateEl = templateEl.content.children[0];
+        document.getElementById('placeholder').remove();
         for (const project of projects) {
             const projectEl = projectTemplateEl.cloneNode(true);
             const tags = (_a = project['tags'], (_a !== null && _a !== void 0 ? _a : [])).map(tag => {

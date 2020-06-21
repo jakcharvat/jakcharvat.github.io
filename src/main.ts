@@ -1,4 +1,9 @@
-import { getProjects, projectsAnimationInDone, prepareForProjectLoad } from './projects.js'
+import { 
+    getProjects, 
+    projectsAnimationInDone, 
+    prepareForProjectLoad,
+    initNameTF
+} from './projects.js'
 
 // @ts-ignore
 const swup = new Swup()
@@ -50,6 +55,7 @@ function activateLink() {
     if (address === '/projects/') {
         prepareForProjectLoad()
         getProjects()
+        initNameTF()
     }
 }
 

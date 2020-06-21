@@ -80,4 +80,26 @@ function prepareForProjectLoad() {
     hasAnimationInFinished = false
 }
 
-export { getProjects, projectsAnimationInDone, prepareForProjectLoad }
+function initNameTF() {
+    const container = document.getElementById('nameTFContainer')
+    const tf = document.getElementById('nameTF') as HTMLInputElement
+
+    let placeholderText = tf.getAttribute('placeholder')
+    if (placeholderText) {
+        container.setAttribute('data-label', placeholderText)
+        tf.classList.add('label-hidden')
+    }
+
+    tf.oninput = e => {
+        if (tf.value.trim() === '') {
+            tf.value = tf.value.trim()
+            container.classList.remove('has-input')
+        } else {
+            if (!container.classList.contains('has-input')) {
+                container.classList.add('has-input')
+            }
+        }
+    }
+}
+
+export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF }

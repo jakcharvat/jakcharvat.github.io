@@ -4,12 +4,15 @@
 @import 'project-card.scss';
 @import 'mixins.scss';
 @import 'noscript.scss';
+@import 'search-filter-row.scss';
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
+
 
 #logo {
     font-size: 28px;
@@ -28,6 +31,14 @@
 .root-page #logo {
     cursor: default;
     opacity: 0;
+}
+
+::selection {
+    background: rgba(var(--primary-color-rgb), 0.3);
+}
+
+::-moz-selection {
+    background: rgba(var(--primary-color-rgb), 0.3);
 }
 
 html {
@@ -176,7 +187,7 @@ html {
         transform: translate(0);
         padding: 4px 8px 104px 8px;
         margin: 0;
-        box-shadow: 2px 2px 10px 0 #0002;
+        @include shared-shadow();
         transition: background 0.3s ease, 
                     box-shadow 0.3s ease;
 
@@ -236,7 +247,7 @@ html {
 
 
 @include noscript-style();
-
+@include search-and-filter-style();
 
 @media screen and (max-width: 414px) {
     html h1 {

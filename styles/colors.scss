@@ -59,6 +59,7 @@
     --background-color-rgb: var(--Base-5-rgb);
     --alternate-background-color: #EBEBEB;
     --opposite-color: var(--Base-1-hex);
+    --opposite-color-rgb: var(--Base-1-rgb);
     --alternate-opposite-color: var(--Base-2-hex);
 }
 
@@ -67,6 +68,7 @@
         --background-color: var(--Base-1-hex);
         --background-color-rgb: var(--Base-1-rgb);
         --opposite-color: var(--Base-5-hex);
+        --opposite-color-rgb: var(--Base-5-rgb);
         --alternate-background-color: var(--Base-2-hex);
         --alternate-opposite-color: var(--Base-4-hex);
     }

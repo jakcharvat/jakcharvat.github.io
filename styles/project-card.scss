@@ -16,6 +16,7 @@
         .project-image {
             position: relative;
             width: 300px;
+            min-width: 300px;
             height: 200px;
             margin-right: 30px;
             overflow: visible;
@@ -59,6 +60,7 @@
                 &.project-detail-row--title {
                     justify-content: space-between;
                     align-items: baseline;
+                    flex-wrap: wrap;
                 }
 
                 &.project-detail-row--tags {
@@ -68,10 +70,13 @@
                 }
 
                 a.project-title {
-                    display: inline;
                     @include link-style();
                     @include subheader-style();
                     text-transform: none;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-lines: 1;
+                    margin-right: 10px;
                     @include user-select-none();
                 }
 
@@ -111,6 +116,42 @@
             p {
                 margin-top: 15px;
             }
+        }
+    }
+
+    @media screen and (max-width: 950px) {
+        .project .project-image {
+            width: 200px;
+            min-width: 200px;
+            height: 130px;
+
+            img {
+                width: 200px;
+                height: 130px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .project {
+            flex-direction: column;
+            
+            .project-image, .project-image img {
+                margin: 0;
+                width: 300px;
+                height: 200px;
+            }
+
+            .project-detail-col {
+                padding: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 370px) {
+        .project .project-image, .project .project-image img {
+            width: 200px;
+            height: 130px;
         }
     }
 }

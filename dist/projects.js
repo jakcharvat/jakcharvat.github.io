@@ -7,37 +7,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import './project-card.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
 const images = [];
 function getProjects() {
-    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const projectsFile = yield fetch('../projects/projects.json');
         const projects = yield projectsFile.json();
         const containerElement = document.getElementById('projectsGrid');
-        const templateEl = document.getElementById('project-template');
-        const projectTemplateEl = templateEl.content.children[0];
         document.getElementById('placeholder').remove();
         for (const project of projects) {
-            const projectEl = projectTemplateEl.cloneNode(true);
-            const tags = (_a = project['tags'], (_a !== null && _a !== void 0 ? _a : [])).map(tag => {
-                return `<div class="project-tag">${tag}</div>`;
-            }).join('\n');
-            let projectInnerEl = projectEl.innerHTML;
-            projectInnerEl = projectInnerEl
-                .replace('{{Title}}', project['title'])
-                .replace('{{LowresURL}}', `images/${project['lowResImage']}`)
-                .replace('{{RepoURL}}', project['repoURL'])
-                .replace('{{Description}}', project['description'])
-                .replace('{{Tags}}', tags)
-                .replace('{{URL}}', project['url']);
-            projectEl.innerHTML = projectInnerEl;
-            containerElement.appendChild(projectEl);
-            images.push({
-                url: project['highResImage'],
-                imageContainerEl: Array.from(projectEl.children).filter(el => el.className == 'project-image')[0]
-            });
+            let el = document.createElement('project-card');
+            el.project = project;
+            containerElement.appendChild(el);
         }
         hasLoadedProjects = true;
         fetchFullresImages();
@@ -50,22 +33,9 @@ function projectsAnimationInDone() {
 function fetchFullresImages() {
     if (!(hasAnimationInFinished && hasLoadedProjects))
         return;
-    images.forEach(img => {
-        const imgName = img['url'];
-        const container = img['imageContainerEl'];
-        const imgEl = new Image();
-        imgEl.src = `images/${imgName}`;
-        imgEl.className = 'highres';
-        container.appendChild(imgEl);
-        const lowresImgEl = Array.from(container.children)[0];
-        imgEl.onload = () => {
-            setTimeout(() => {
-                imgEl.classList.add('shown');
-                lowresImgEl.classList.add('hidden');
-                setTimeout(() => lowresImgEl.remove(), 300);
-            }, 10);
-        };
-    });
+    const projectsContainer = document.getElementById('projectsGrid');
+    const projectCards = Array.from(projectsContainer.children);
+    projectCards.forEach(card => card.fetchFullResImage());
 }
 function prepareForProjectLoad() {
     hasLoadedProjects = false;

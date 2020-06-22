@@ -1,7 +1,7 @@
 .transition-main {
     transition: 0.35s;
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0);
 }
 
 html.is-animating .transition-main {
@@ -13,4 +13,15 @@ html.is-animating .transition-main {
 html.is-animating.is-leaving .transition-main {
     transform: translateY(40px);
     transition-timing-function: ease-in;
+}
+
+
+@media screen and (max-width: 750px) {
+    html.is-animating .transition-main {
+        transform: translateX(40px);
+    }
+
+    html.is-animating.is-leaving .transition-main {
+        transform: translateX(-40px);
+    }
 }

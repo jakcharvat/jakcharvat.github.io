@@ -114,7 +114,7 @@ p .link:hover::before {
 .transition-main {
   transition: 0.35s;
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0);
 }
 
 html.is-animating .transition-main {
@@ -128,6 +128,15 @@ html.is-animating.is-leaving .transition-main {
   transition-timing-function: ease-in;
 }
 
+@media screen and (max-width: 750px) {
+  html.is-animating .transition-main {
+    transform: translateX(40px);
+  }
+
+  html.is-animating.is-leaving .transition-main {
+    transform: translateX(-40px);
+  }
+}
 h1 {
   color: var(--primary-color);
   font-family: futura-pt, "Futura", sans-serif;

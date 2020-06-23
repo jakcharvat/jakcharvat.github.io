@@ -4,8 +4,6 @@ import ProjectCard from './project-card.js'
 let hasAnimationInFinished = false
 let hasLoadedProjects = false
 
-const images = []
-
 async function getProjects() {
     const projectsFile = await fetch('../projects/projects.json')
     const projects = await projectsFile.json()
@@ -59,12 +57,32 @@ function initNameTF() {
         if (tf.value.trim() === '') {
             tf.value = tf.value.trim()
             container.classList.remove('has-input')
+            search()
         } else {
             if (!container.classList.contains('has-input')) {
                 container.classList.add('has-input')
             }
+
+            search(tf.value)
         }
     }
+}
+
+function search(query?: string) {
+    let projects = Array.from(document.getElementById('projectsGrid').children) as ProjectCard[]
+    
+    if (query === undefined || query === null) {
+        projects.forEach(project => project.show())
+        return
+    }
+
+    projects.forEach(project => {
+        if (project.matchesQuery(query)) {
+            project.show()
+        } else if (!project.classList.contains('hidden')) {
+            project.hide()
+        }
+    })
 }
 
 export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF }

@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import './project-card.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
-const images = [];
 function getProjects() {
     return __awaiter(this, void 0, void 0, function* () {
         const projectsFile = yield fetch('../projects/projects.json');
@@ -53,12 +52,29 @@ function initNameTF() {
         if (tf.value.trim() === '') {
             tf.value = tf.value.trim();
             container.classList.remove('has-input');
+            search();
         }
         else {
             if (!container.classList.contains('has-input')) {
                 container.classList.add('has-input');
             }
+            search(tf.value);
         }
     };
+}
+function search(query) {
+    let projects = Array.from(document.getElementById('projectsGrid').children);
+    if (query === undefined || query === null) {
+        projects.forEach(project => project.show());
+        return;
+    }
+    projects.forEach(project => {
+        if (project.matchesQuery(query)) {
+            project.show();
+        }
+        else if (!project.classList.contains('hidden')) {
+            project.hide();
+        }
+    });
 }
 export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF };

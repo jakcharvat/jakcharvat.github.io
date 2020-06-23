@@ -1,120 +1,126 @@
 @import 'text-styles.scss';
 
 @mixin project-card {
-    .project {
-        background-color: var(--alternate-background-color);
-        box-sizing: border-box;
-        padding: 10px;
-        border-radius: 10px;
-        @include shared-shadow();
-        margin: 20px 0;
-        display: flex;
-        flex-direction: row;
-        object-fit: fill;
-        align-items: center;
-
-        .project-image {
-            position: relative;
-            width: 300px;
-            min-width: 300px;
-            height: 200px;
-            margin-right: 30px;
-            overflow: visible;
-
-            img {
-                width: 300px;
-                height: 200px;
-                position: absolute;
-                top: 0px;
-                object-fit: contain;
-
-                &.lowres {
-                    filter: blur(10px);
-                    transition: opacity, 0.3s ease;
-
-                    &.hidden {
-                        opacity: 0;
-                    }
-                }
-
-                &.highres {
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-
-                    &.shown {
-                        opacity: 1;
-                    }
-                }
-            }
+    project-card {
+        &.hidden {
+            display: none;
         }
-
-        .project-detail-col {
+        
+        .project {
+            background-color: var(--alternate-background-color);
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 10px;
+            @include shared-shadow();
+            margin: 20px 0;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex-direction: row;
+            object-fit: fill;
+            align-items: center;
 
-            .project-detail-row {
-                display: flex;
-                flex-direction: row;
+            .project-image {
+                position: relative;
+                width: 300px;
+                min-width: 300px;
+                height: 200px;
+                margin-right: 30px;
+                overflow: visible;
 
-                &.project-detail-row--title {
-                    justify-content: space-between;
-                    align-items: baseline;
-                    flex-wrap: wrap;
-                }
+                img {
+                    width: 300px;
+                    height: 200px;
+                    position: absolute;
+                    top: 0px;
+                    object-fit: contain;
 
-                &.project-detail-row--tags {
-                    right: 30px;
-                    flex-wrap: wrap;
-                    margin: 10px 0;
-                }
+                    &.lowres {
+                        filter: blur(10px);
+                        transition: opacity, 0.3s ease;
 
-                a.project-title {
-                    @include link-style();
-                    @include subheader-style();
-                    text-transform: none;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    max-lines: 1;
-                    margin-right: 10px;
-                    @include user-select-none();
-                }
+                        &.hidden {
+                            opacity: 0;
+                        }
+                    }
 
-                a {
-                    position: relative;
-                    z-index: 2;
-                    text-transform: lowercase;
-                    font-size: 1.2rem;
-                    font-weight: 400;
-                    text-decoration: none;
-                    font-family: futura-pt, 'Futura', sans-serif;
-                    color: var(--alternate-opposite-color);
-                    @include link-style();
-                }
+                    &.highres {
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
 
-                .project-tag {
-                    background: rgba(var(--primary-color-rgb), 0.2);
-                    margin: 5px;
-                    padding: 5px 10px;
-                    border: 2px solid var(--primary-color);
-                    border-radius: 5px;
-                    color: var(--opposite-color);
-                    @include paragraph-style();
-                    font-size: 14px;
-                    font-weight: 200;
-                    @include user-select-none();
-                    cursor: pointer;
-                    text-transform: lowercase;
+                        &.shown {
+                            opacity: 1;
+                        }
+                    }
                 }
             }
 
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            padding-right: 20px;
+            .project-detail-col {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
 
-            p {
-                margin-top: 15px;
+                .project-detail-row {
+                    display: flex;
+                    flex-direction: row;
+
+                    &.project-detail-row--title {
+                        justify-content: space-between;
+                        align-items: baseline;
+                        flex-wrap: wrap;
+                    }
+
+                    &.project-detail-row--tags {
+                        right: 30px;
+                        flex-wrap: wrap;
+                        margin: 10px 0;
+                    }
+
+                    a.project-title {
+                        @include link-style();
+                        @include subheader-style();
+                        text-transform: none;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        max-lines: 1;
+                        margin-right: 10px;
+                        @include user-select-none();
+                    }
+
+                    a {
+                        position: relative;
+                        z-index: 2;
+                        text-transform: lowercase;
+                        font-size: 1.2rem;
+                        font-weight: 400;
+                        text-decoration: none;
+                        font-family: futura-pt, 'Futura', sans-serif;
+                        color: var(--alternate-opposite-color);
+                        @include link-style();
+                    }
+
+                    .project-tag {
+                        background: rgba(var(--primary-color-rgb), 0.2);
+                        margin: 5px;
+                        padding: 5px 10px;
+                        border: 2px solid var(--primary-color);
+                        border-radius: 5px;
+                        color: var(--opposite-color);
+                        @include paragraph-style();
+                        font-size: 14px;
+                        font-weight: 200;
+                        @include user-select-none();
+                        cursor: pointer;
+                        text-transform: lowercase;
+                    }
+                }
+
+                display: flex;
+                flex-direction: column;
+                max-width: 500px;
+                padding-right: 20px;
+
+                p {
+                    margin-top: 15px;
+                }
             }
         }
     }

@@ -67,5 +67,18 @@ export default class ProjectCard extends HTMLElement {
         imgEl.className = 'highres';
         this.imageContainerEl.appendChild(imgEl);
     }
+    show() {
+        this.classList.remove('hidden');
+    }
+    hide() {
+        if (!this.classList.contains('hidden')) {
+            this.classList.add('hidden');
+        }
+    }
+    matchesQuery(query) {
+        const matchesTitle = this._project.title.toLowerCase().includes(query.toLowerCase());
+        const matchesDescription = this._project.description.toLowerCase().includes(query.toLowerCase());
+        return matchesTitle || matchesDescription;
+    }
 }
 customElements.define('project-card', ProjectCard);

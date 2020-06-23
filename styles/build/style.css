@@ -424,36 +424,36 @@ html .content.content--projects project-card .project .project-detail-col p {
   margin-top: 15px;
 }
 @media screen and (max-width: 1150px) {
-  html .content.content--projects .project .project-detail-col {
+  html .content.content--projects project-card .project .project-detail-col {
     max-width: initial;
   }
 }
 @media screen and (max-width: 950px) {
-  html .content.content--projects .project .project-image {
+  html .content.content--projects project-card .project .project-image {
     width: 200px;
     min-width: 200px;
     height: 130px;
   }
-  html .content.content--projects .project .project-image img {
+  html .content.content--projects project-card .project .project-image img {
     width: 200px;
     height: 130px;
   }
 }
 @media screen and (max-width: 600px) {
-  html .content.content--projects .project {
+  html .content.content--projects project-card .project {
     flex-direction: column;
   }
-  html .content.content--projects .project .project-image, html .content.content--projects .project .project-image img {
+  html .content.content--projects project-card .project .project-image, html .content.content--projects project-card .project .project-image img {
     margin: 0;
     width: 300px;
     height: 200px;
   }
-  html .content.content--projects .project .project-detail-col {
+  html .content.content--projects project-card .project .project-detail-col {
     padding: 0;
   }
 }
 @media screen and (max-width: 370px) {
-  html .content.content--projects .project .project-image, html .content.content--projects .project .project-image img {
+  html .content.content--projects project-card .project .project-image, html .content.content--projects .project .project-image img {
     width: 200px;
     height: 130px;
   }

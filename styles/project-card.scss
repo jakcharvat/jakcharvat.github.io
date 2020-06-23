@@ -5,7 +5,7 @@
         &.hidden {
             display: none;
         }
-        
+
         .project {
             background-color: var(--alternate-background-color);
             box-sizing: border-box;
@@ -126,13 +126,13 @@
     }
 
     @media screen and (max-width: 1150px) {
-        .project .project-detail-col {
+        project-card .project .project-detail-col {
             max-width: initial;
         }
     }
 
     @media screen and (max-width: 950px) {
-        .project .project-image {
+        project-card .project .project-image {
             width: 200px;
             min-width: 200px;
             height: 130px;
@@ -145,7 +145,7 @@
     }
 
     @media screen and (max-width: 600px) {
-        .project {
+        project-card .project {
             flex-direction: column;
             
             .project-image, .project-image img {
@@ -161,7 +161,7 @@
     }
 
     @media screen and (max-width: 370px) {
-        .project .project-image, .project .project-image img {
+        project-card .project .project-image, .project .project-image img {
             width: 200px;
             height: 130px;
         }

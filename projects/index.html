@@ -54,14 +54,18 @@
             <div class="projects-filter-row">
                 <div id="nameTFContainer">
                     <input type="text" name="nameTF" id="nameTF", placeholder="Search..." autocomplete="off">
-                    <!-- <input type="text" name="name" id="nameTF"> -->
                 </div>
-                <button>Filter tags</button>
+                <button id="filterTagsButton">Filter tags</button>
             </div>
     
             <div class="projects-grid" id="projectsGrid"></div>
         </div>
     </main>
+
+    <tags-window>
+        <div class="overlay"></div>
+        <div class="window"></div>
+    </tags-window>
 
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
     <script src="../dist/main.js" type="module"></script>

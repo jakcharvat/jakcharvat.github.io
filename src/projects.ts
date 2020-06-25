@@ -6,7 +6,7 @@ let hasLoadedProjects = false
 
 async function getProjects() {
     const projectsFile = await fetch('../projects/projects.json')
-    const projects = await projectsFile.json()
+    const projects = await projectsFile.json() as Project[]
 
     const containerElement = document.getElementById('projectsGrid')
 
@@ -19,6 +19,7 @@ async function getProjects() {
     }
 
     hasLoadedProjects = true
+    getTags(projects)
     fetchFullresImages()
 }
 
@@ -83,6 +84,42 @@ function search(query?: string) {
             project.hide()
         }
     })
+}
+
+
+function getTags(projects: Project[]) {
+    const tagsRaw = projects.reduce((acc, curr) => [...acc, ...curr.tags], [])
+    const tags = Array.from(new Set(tagsRaw)) as String[]
+    const sortedTags = tags.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+    createTagsWindow(sortedTags)
+}
+
+function createTagsWindow(tags: String[]) {
+    const tagsWindow = document.querySelector('tags-window')
+    const button = document.getElementById('filterTagsButton')
+    const overlay = Array.from(tagsWindow.children).filter(el => el.classList.contains('overlay'))[0] as HTMLDivElement
+    const window = Array.from(tagsWindow.children).filter(el => el.classList.contains('window'))[0] as HTMLElement
+
+    button.onclick = e => {
+        const pos = (e.target as HTMLElement).getBoundingClientRect()
+        const x = pos.x - 10
+        const y = pos.y + pos.height - 10
+
+        window.style.left = `${x}px`
+        window.style.top = `${y}px`
+
+        tagsWindow.classList.add('display-block')
+        setTimeout(() => {
+            tagsWindow.classList.add('shown') 
+        }, 10);
+    }
+
+    overlay.onclick = e => {
+        tagsWindow.classList.remove('shown')
+        setTimeout(() => {
+            tagsWindow.classList.remove('display-block')
+        }, 300)
+    }
 }
 
 export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF }

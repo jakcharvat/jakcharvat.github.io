@@ -7,6 +7,14 @@
     user-select: none;
 }
 
-@mixin shared-shadow() {
+@mixin shared-shadow {
     box-shadow: 2px 2px 10px 0 #0002;
+}
+
+@mixin smaller-shadow {
+    box-shadow: 1px 1px 5px 0 #0001;
+}
+
+@mixin bigger-shadow() {
+    box-shadow: 3px 3px 15px 0 #0003;
 }

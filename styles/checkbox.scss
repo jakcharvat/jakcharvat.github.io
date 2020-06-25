@@ -1,0 +1,53 @@
+input[type='checkbox'].filter-checkbox {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    background-color: rgba(var(--primary-color-rgb), 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    transition: background 0.2s ease;
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        background: var(--background-color);
+        border-radius: 1px;
+    }
+
+    &::before {
+        left: 3px;
+        bottom: 5px;
+        height: 6px;
+        transform-origin: top;
+        transform: rotate(-45deg) scaleY(0) translateY(1px);
+        transition: transform 0.1s 0.1s ease-out;
+    }
+
+    &::after {
+        left: 6px;
+        bottom: 6px;
+        height: 11px;
+        transform-origin: bottom;
+        transform: rotate(45deg) scaleY(0);
+        transition: transform 0.1s ease-in;
+    }
+
+    &:checked {
+        background: var(--primary-color);
+
+        &::before {
+            transform: rotate(-45deg) scaleY(1) translateY(1px);
+            transition: transform 0.1s ease-in;
+        }
+
+        &::after {
+            transform: rotate(45deg) scaleY(1);
+            transition: transform 0.1s 0.1s ease-out;
+        }
+    }
+}

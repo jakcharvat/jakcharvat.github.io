@@ -1,6 +1,8 @@
 import ProjectCard from "./project-card.js"
-import Project from "./project.js"
+import Project from "../project.js"
 import TagsWindow from "./tags-window.js"
+import  "./filter-textfield.js"
+import FilterTextfield from "./filter-textfield.js"
 
 class FilterRow extends HTMLElement {
     _parent: HTMLElement
@@ -10,12 +12,13 @@ class FilterRow extends HTMLElement {
     constructor() {
         super()
 
-        this.innerHTML = `
-        <div id="nameTFContainer">
-            <input type="text" name="nameTF" id="nameTF", placeholder="Search..." autocomplete="off">
-        </div>
-        <button id="filterTagsButton">Filter tags</button>
-        `
+        const tf = new FilterTextfield((str?: string) => this.search(str))
+        const button = document.createElement('button')
+        button.id = 'filterTagsButton'
+        button.innerHTML = 'Filter tags'
+
+        this.appendChild(tf)
+        this.appendChild(button)
 
         window.addEventListener('resize', () => {
             this.onScroll()
@@ -23,37 +26,11 @@ class FilterRow extends HTMLElement {
     }
 
     initRow(projects: Project[]) {
-        this.initNameTF()
         this.getTags(projects)
         this.classList.add('shown')
         
         // this.classList.add('stuck')
         this.initScrollListener()
-    }
-
-    initNameTF() {
-        const container = document.getElementById('nameTFContainer')
-        const tf = document.getElementById('nameTF') as HTMLInputElement
-    
-        let placeholderText = tf.getAttribute('placeholder')
-        if (placeholderText) {
-            container.setAttribute('data-label', placeholderText)
-            tf.classList.add('label-hidden')
-        }
-    
-        tf.oninput = e => {
-            if (tf.value.trim() === '') {
-                tf.value = tf.value.trim()
-                container.classList.remove('has-input')
-                this.search()
-            } else {
-                if (!container.classList.contains('has-input')) {
-                    container.classList.add('has-input')
-                }
-    
-                this.search(tf.value)
-            }
-        }
     }
     
     search(query?: string) {

@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import './filter-row.js';
+import './webcomponents/filter-row.js';
 import Project from './project.js';
-import ProjectCard from './project-card.js';
+import ProjectCard from './webcomponents/project-card.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
 function getProjects() {

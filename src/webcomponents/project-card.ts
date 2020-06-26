@@ -1,5 +1,5 @@
-import { createElement } from './dom-manipulations.js'
-import Project from './project.js'
+import { createElement } from '../dom-manipulations.js'
+import Project from '../project.js'
 
 export default class ProjectCard extends HTMLElement {
     _project: Project

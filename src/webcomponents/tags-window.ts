@@ -1,5 +1,5 @@
-import { createElement } from "./dom-manipulations.js"
-import Project from './project.js';
+import { createElement } from "../dom-manipulations.js"
+import Project from '../project.js';
 
 class TagsWindow extends HTMLElement {
     _projects: Project[]

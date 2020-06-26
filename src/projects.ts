@@ -1,7 +1,7 @@
-import './filter-row.js'
+import './webcomponents/filter-row.js'
 import Project, { ProjectDict } from './project.js'
-import ProjectCard from './project-card.js'
-import FilterRow from './filter-row.js'
+import ProjectCard from './webcomponents/project-card.js'
+import FilterRow from './webcomponents/filter-row.js'
 
 let hasAnimationInFinished = false
 let hasLoadedProjects = false

@@ -860,64 +860,11 @@ html filter-row.stuck::before {
     padding: 0px 20px;
   }
 }
-html filter-row #nameTFContainer {
+html filter-row filter-textfield {
   position: relative;
   margin: 10px 10px 10px 0;
   flex-grow: 100;
   height: 28px;
-}
-html filter-row #nameTFContainer input {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  padding: 0px 4px;
-  border: none;
-  outline: none;
-  color: var(--alternate-opposite-color);
-  font-family: futura-pt, "Futura", sans-serif;
-  font-size: 1.1rem;
-  text-align: justify;
-  line-height: 1.6;
-}
-html filter-row #nameTFContainer input.label-hidden::placeholder {
-  opacity: 0;
-}
-html filter-row #nameTFContainer[data-label]::before {
-  content: attr(data-label);
-  position: absolute;
-  color: var(--alternate-opposite-color);
-  font-family: futura-pt, "Futura", sans-serif;
-  font-size: 1.1rem;
-  text-align: justify;
-  line-height: 1.6;
-  padding: 0 4px;
-  color: rgba(var(--opposite-color-rgb), 0.8);
-  pointer-events: none;
-  transform: scale(1) translate(0);
-  transform-origin: left top;
-  transition: all 0.2s ease;
-}
-html filter-row #nameTFContainer.has-input::before, html filter-row #nameTFContainer:focus-within::before {
-  transform: scale(0.75) translateY(-30px);
-}
-html filter-row #nameTFContainer:focus-within::before {
-  color: var(--primary-color);
-}
-html filter-row #nameTFContainer::after {
-  content: "";
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-  opacity: 0.8;
-  left: 0;
-  position: absolute;
-  z-index: -1;
-  background: var(--primary-color);
-  transition: height 0.2s ease, opacity 0.2s ease;
-}
-html filter-row #nameTFContainer:focus-within::after, html filter-row #nameTFContainer:hover::after {
-  height: 60%;
-  opacity: 0.2;
 }
 html filter-row button {
   color: var(--alternate-opposite-color);

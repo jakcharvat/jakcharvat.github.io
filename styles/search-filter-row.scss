@@ -6,9 +6,33 @@
         align-items: baseline;
         margin-top: 40px;
         width: 100%;
+        position: sticky;
+        position: -webkit-sticky;
 
         &.shown {
             display: flex;
+        }
+
+        &.stuck {
+            position: fixed;
+            top: 12px;
+            margin-top: 0px;
+            z-index: 5;
+
+            &::before {
+                content: '';
+                position: absolute;
+                @include blur-background();
+                left: -300px;
+                right: -300px;
+                top: -12px;
+                bottom: 0px;
+                z-index: -1;
+            }
+
+            @media screen and (max-width: 750px) {
+                padding: 0px 20px;
+            }
         }
 
         #nameTFContainer {

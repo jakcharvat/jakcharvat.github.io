@@ -22,7 +22,7 @@
     font-family: futura-pt, 'Futura', sans-serif;
     text-decoration: none;
     cursor: pointer;
-    z-index: 2;
+    z-index: 10;
     color: var(--primary-color);
     position: fixed;
     left: 20px;
@@ -183,13 +183,13 @@ html {
         top: initial;
         left: 0;
         right: 0;
-        background: var(--alternate-background-color);
+        @include blur-background();
         justify-content: center;
         align-items: center;
         transform: translate(0);
         padding: 4px 8px 104px 8px;
         margin: 0;
-        @include shared-shadow();
+        // @include shared-shadow();
         transition: background 0.3s ease, 
                     box-shadow 0.3s ease;
 

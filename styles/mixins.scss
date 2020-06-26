@@ -15,6 +15,12 @@
     box-shadow: 1px 1px 5px 0 #0001;
 }
 
-@mixin bigger-shadow() {
+@mixin bigger-shadow {
     box-shadow: 3px 3px 15px 0 #0003;
+}
+
+@mixin blur-background {
+    background: rgba(var(--background-color-rgb), 0.6);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
 }

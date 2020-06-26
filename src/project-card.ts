@@ -70,7 +70,6 @@ export default class ProjectCard extends HTMLElement {
         [textCol, tagsContainer].forEach(el => projectInfoCol.appendChild(el));
         [this.imageContainerEl, projectInfoCol].forEach(el => projectEl.appendChild(el));
 
-        console.log('appending', projectEl)
         this.appendChild(projectEl)
     }
 

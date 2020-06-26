@@ -7,8 +7,6 @@ let hasAnimationInFinished = false
 let hasLoadedProjects = false
 
 async function getProjects() {
-    await new Promise(res => setTimeout(res, 5000))
-
     const projectsFile = await fetch('../projects/projects.json')
     const projects = (await projectsFile.json() as ProjectDict[]).map(dict => new Project(dict))
 

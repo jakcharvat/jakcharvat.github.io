@@ -8,11 +8,16 @@ class FilterRow extends HTMLElement {
         </div>
         <button id="filterTagsButton">Filter tags</button>
         `;
+        window.addEventListener('resize', () => {
+            this.updateStuckPosition();
+        });
     }
     initRow(projects) {
         this.initNameTF();
         this.getTags(projects);
         this.classList.add('shown');
+        // this.classList.add('stuck')
+        this.initScrollListener();
     }
     initNameTF() {
         const container = document.getElementById('nameTFContainer');
@@ -65,6 +70,51 @@ class FilterRow extends HTMLElement {
         tagsWindow.setupListeners();
         document.body.appendChild(tagsWindow);
         tagsWindow.getHeight();
+    }
+    initScrollListener() {
+        var _a;
+        this._initialOffsetTop = this.offsetTop;
+        this._initialParentOffsetTop = (_a = this._parent, (_a !== null && _a !== void 0 ? _a : this.parentElement)).offsetTop;
+        window.onscroll = () => this.onScroll();
+    }
+    onScroll() {
+        var _a;
+        const parentOffsetTop = (_a = this._parent, (_a !== null && _a !== void 0 ? _a : this.parentElement)).offsetTop;
+        const diff = this._initialParentOffsetTop - parentOffsetTop;
+        const offset = (this._initialOffsetTop - diff) + parentOffsetTop;
+        if (window.scrollY > offset - 12) {
+            if (this.classList.contains('stuck')) {
+                return;
+            }
+            const height = this.getBoundingClientRect().height;
+            const offset = height + parseInt(window.getComputedStyle(this).marginTop);
+            document.getElementById('projectsGrid').style.marginTop = `${offset}px`;
+            this.classList.add('stuck');
+            this._parent = this.parentElement;
+            this._parent.removeChild(this);
+            document.body.appendChild(this);
+            this.updateStuckPosition();
+        }
+        else {
+            if (!this.classList.contains('stuck')) {
+                return;
+            }
+            this.classList.remove('stuck');
+            const grid = document.getElementById('projectsGrid');
+            grid.style.marginTop = '0px';
+            this.style.cssText = '';
+            document.body.removeChild(this);
+            this._parent.insertBefore(this, grid);
+        }
+    }
+    updateStuckPosition() {
+        this.onScroll();
+        const container = document.querySelector('.content.content--projects');
+        const containerStyle = window.getComputedStyle(container);
+        this.style.left = containerStyle.left;
+        this.style.transform = containerStyle.transform;
+        this.style.width = containerStyle.width;
+        this.style.maxWidth = containerStyle.maxWidth;
     }
 }
 customElements.define('filter-row', FilterRow);

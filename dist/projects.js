@@ -14,7 +14,6 @@ let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
 function getProjects() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield new Promise(res => setTimeout(res, 5000));
         const projectsFile = yield fetch('../projects/projects.json');
         const projects = (yield projectsFile.json()).map(dict => new Project(dict));
         const containerElement = document.getElementById('projectsGrid');

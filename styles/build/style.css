@@ -378,7 +378,7 @@ tags-window.opacity-hidden {
   font-family: futura-pt, "Futura", sans-serif;
   text-decoration: none;
   cursor: pointer;
-  z-index: 2;
+  z-index: 10;
   color: var(--primary-color);
   position: fixed;
   left: 20px;
@@ -722,13 +722,14 @@ html nav .nav-item:not(.active):hover, html nav .nav-item.active {
     top: initial;
     left: 0;
     right: 0;
-    background: var(--alternate-background-color);
+    background: rgba(var(--background-color-rgb), 0.6);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     justify-content: center;
     align-items: center;
     transform: translate(0);
     padding: 4px 8px 104px 8px;
     margin: 0;
-    box-shadow: 2px 2px 10px 0 #0002;
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   html nav .nav-item {
@@ -830,9 +831,34 @@ html filter-row {
   align-items: baseline;
   margin-top: 40px;
   width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
 }
 html filter-row.shown {
   display: flex;
+}
+html filter-row.stuck {
+  position: fixed;
+  top: 12px;
+  margin-top: 0px;
+  z-index: 5;
+}
+html filter-row.stuck::before {
+  content: "";
+  position: absolute;
+  background: rgba(var(--background-color-rgb), 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  left: -300px;
+  right: -300px;
+  top: -12px;
+  bottom: 0px;
+  z-index: -1;
+}
+@media screen and (max-width: 750px) {
+  html filter-row.stuck {
+    padding: 0px 20px;
+  }
 }
 html filter-row #nameTFContainer {
   position: relative;

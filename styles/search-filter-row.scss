@@ -1,11 +1,15 @@
 @mixin search-and-filter-style {
     html filter-row {
-        display: flex;
+        display: none;
         flex-direction: row;
         justify-content: center;
         align-items: baseline;
         margin-top: 40px;
         width: 100%;
+
+        &.shown {
+            display: flex;
+        }
 
         #nameTFContainer {
             position: relative;

@@ -2,7 +2,6 @@ import {
     getProjects, 
     projectsAnimationInDone, 
     prepareForProjectLoad,
-    initNameTF
 } from './projects.js'
 
 // @ts-ignore
@@ -55,7 +54,6 @@ function activateLink() {
     if (address === '/projects/') {
         prepareForProjectLoad()
         getProjects()
-        initNameTF()
     }
 }
 

@@ -1,4 +1,4 @@
-import { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF } from './projects.js';
+import { getProjects, projectsAnimationInDone, prepareForProjectLoad, } from './projects.js';
 // @ts-ignore
 const swup = new Swup();
 swup.on('animationInDone', animationInDone);
@@ -41,7 +41,6 @@ function activateLink() {
     if (address === '/projects/') {
         prepareForProjectLoad();
         getProjects();
-        initNameTF();
     }
 }
 function animationInDone() {

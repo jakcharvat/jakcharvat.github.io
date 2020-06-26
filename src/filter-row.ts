@@ -18,7 +18,7 @@ class FilterRow extends HTMLElement {
         `
 
         window.addEventListener('resize', () => {
-            this.updateStuckPosition()
+            this.onScroll()
         })
     }
 
@@ -107,8 +107,10 @@ class FilterRow extends HTMLElement {
         const parentOffsetTop = (this._parent ?? this.parentElement).offsetTop
         const diff = this._initialParentOffsetTop - parentOffsetTop
         const offset = (this._initialOffsetTop - diff) + parentOffsetTop
-        
+
         if (window.scrollY > offset - 12) {
+            this.updateStuckPosition()
+
             if (this.classList.contains('stuck')) { return }
             
             const height = this.getBoundingClientRect().height
@@ -135,7 +137,6 @@ class FilterRow extends HTMLElement {
     }
 
     updateStuckPosition() {
-        this.onScroll()
         const container = document.querySelector('.content.content--projects')
         const containerStyle = window.getComputedStyle(container)
         this.style.left = containerStyle.left

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["es5", "es6", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "dom"],
     "outDir": "./dist/",
     "target": "es6",
   },

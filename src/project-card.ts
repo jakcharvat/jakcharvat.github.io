@@ -1,9 +1,12 @@
 import { createElement } from './dom-manipulations.js'
+import Project from './project.js'
 
 export default class ProjectCard extends HTMLElement {
     _project: Project
     imageContainerEl: HTMLDivElement
     lowResImageEl: HTMLImageElement
+    _matchesTag: boolean = true
+    _matchesQuery: boolean = true
 
     set project(project: Project) {
         this._project = project
@@ -91,21 +94,22 @@ export default class ProjectCard extends HTMLElement {
     }
 
 
-    show() {
-        this.classList.remove('hidden')
+    set matchesTag(matches: boolean) {
+        this._matchesTag = matches
+        this.updateVisibility()
     }
 
-    hide() {
-        if (!this.classList.contains('hidden')) {
+    set matchesQuery(matches: boolean) {
+        this._matchesQuery = matches
+        this.updateVisibility()
+    }
+    
+    updateVisibility() {
+        if (this._matchesQuery && this._matchesTag) {
+            this.classList.remove('hidden')
+        } else if (!this.classList.contains('hidden')) {
             this.classList.add('hidden')
         }
-    }
-
-    matchesQuery(query: string): boolean {
-        const matchesTitle = this._project.title.toLowerCase().includes(query.toLowerCase())
-        const matchesDescription = this._project.description.toLowerCase().includes(query.toLowerCase())
-
-        return matchesTitle || matchesDescription
     }
 }
 

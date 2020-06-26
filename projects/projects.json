@@ -16,5 +16,11 @@
         "highResImage": "Nim_high.png",
         "tags": ["Flutter", "Dart", "iOS", "android", "macOS", "web", "cross-platform"],
         "description": "This is a Flutter implementation of the classic mathematical Nim game. Complete with an AI opponent, options to start first or second, as well as the option to play against a human player. "
+    },
+    {
+
+    },
+    {
+        
     }
 ]

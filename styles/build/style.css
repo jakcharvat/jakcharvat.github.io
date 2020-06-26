@@ -187,6 +187,10 @@ p .link:hover::before {
 input[type=checkbox].filter-checkbox {
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
   position: relative;
   background-color: rgba(var(--primary-color-rgb), 0.3);
   border-radius: 4px;
@@ -248,20 +252,69 @@ tags-window .window {
   position: fixed;
   top: 10px;
   left: 10px;
-  width: 300px;
-  height: 200px;
+  width: 350px;
+  max-height: calc(100% - 40px);
   background: var(--alternate-background-color);
   box-shadow: 3px 3px 15px 0 #0003;
   border-radius: 20px;
   z-index: 6;
+  opacity: 0;
+  display: none;
+  transform: scale(0);
+  transition: opacity 0.2s ease;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 5px;
 }
-tags-window.display-block .overlay {
+tags-window .window h2 {
+  margin: 5px 10px 10px 10px;
+}
+tags-window .window tag-element {
+  width: 150px;
+  margin: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+tags-window .window tag-element label {
+  margin-left: 10px;
+  color: var(--alternate-opposite-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  pointer-events: none;
+}
+tags-window .window tag-element input[type=checkbox] {
+  pointer-events: none;
+}
+tags-window.display-shown .overlay {
   display: block;
+}
+tags-window.display-shown .window {
+  display: flex;
 }
 tags-window.shown .overlay {
   opacity: 1;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+tags-window.shown .window {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.26, 1.6, 0.61, 1);
 }
 
 * {
@@ -719,7 +772,7 @@ html .projects-filter-row {
 }
 html .projects-filter-row #nameTFContainer {
   position: relative;
-  margin: 0 10px;
+  margin: 10px;
   flex-grow: 100;
   height: 28px;
 }
@@ -727,7 +780,7 @@ html .projects-filter-row #nameTFContainer input {
   width: 100%;
   height: 100%;
   background: transparent;
-  padding: 0 4px;
+  padding: 0px 4px;
   border: none;
   outline: none;
   color: var(--alternate-opposite-color);

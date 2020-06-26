@@ -1,4 +1,8 @@
+@use 'mixins.scss';
+
 tags-window {
+    $transition-duration: 0.2s;
+
     .overlay {
         z-index: 5;
         display: none;
@@ -12,7 +16,6 @@ tags-window {
         right: 0;
         bottom: 0;
 
-        $transition-duration: 0.2s;
         transition: opacity $transition-duration ease,
                     backdrop-filter $transition-duration ease,
                     -webkit-backdrop-filter $transition-duration ease;
@@ -22,17 +25,54 @@ tags-window {
         position: fixed;
         top: 10px;
         left: 10px;
-        width: 300px;
-        height: 200px;
+        width: 350px;
+        max-height: calc(100% - 40px);
         background: var(--alternate-background-color);
         @include bigger-shadow();
         border-radius: 20px;
         z-index: 6;
+
+        opacity: 0;
+        display: none;
+        transform: scale(0);
+        transition: opacity $transition-duration ease;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px 5px;
+
+        h2 {
+            margin: 5px 10px 10px 10px;
+        }
+
+        tag-element {
+            width: 150px;
+            margin: 5px 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+
+            label {
+                margin-left: 10px;
+                @include paragraph-style();
+                @include user-select-none();
+                pointer-events: none;
+            }
+
+            input[type='checkbox'] {
+                pointer-events: none;
+            }
+        }
     }
 
-    &.display-block {
+    &.display-shown {
         .overlay {
             display: block;
+        }
+
+        .window {
+            display: flex;
         }
     }
 
@@ -43,6 +83,15 @@ tags-window {
             opacity: 1;
             backdrop-filter: blur($blur-amount);
             -webkit-backdrop-filter: blur($blur-amount);
+        }
+
+        .window {
+            opacity: 1;
+            transform: scale(1);
+
+            $transition-timinig-function: cubic-bezier(.26,1.6,.61,1);
+            transition: opacity $transition-duration ease,
+                        transform $transition-duration $transition-timinig-function;
         }
     }
 }

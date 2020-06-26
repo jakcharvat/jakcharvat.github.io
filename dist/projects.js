@@ -7,17 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import './project-card.js';
+import Project from './project.js';
+import ProjectCard from './project-card.js';
+import TagsWindow from './tags-window.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
 function getProjects() {
     return __awaiter(this, void 0, void 0, function* () {
         const projectsFile = yield fetch('../projects/projects.json');
-        const projects = yield projectsFile.json();
+        const projects = (yield projectsFile.json()).map(dict => new Project(dict));
         const containerElement = document.getElementById('projectsGrid');
         document.getElementById('placeholder').remove();
         for (const project of projects) {
-            let el = document.createElement('project-card');
+            let el = new ProjectCard();
             el.project = project;
             containerElement.appendChild(el);
         }
@@ -66,45 +68,30 @@ function initNameTF() {
 function search(query) {
     let projects = Array.from(document.getElementById('projectsGrid').children);
     if (query === undefined || query === null) {
-        projects.forEach(project => project.show());
+        projects.forEach(project => project.matchesQuery = true);
         return;
     }
-    projects.forEach(project => {
-        if (project.matchesQuery(query)) {
-            project.show();
-        }
-        else if (!project.classList.contains('hidden')) {
-            project.hide();
-        }
-    });
+    projects.forEach(card => card.matchesQuery = card._project.matchesQuery(query));
+}
+function filter(tags) {
+    let projects = Array.from(document.getElementById('projectsGrid').children);
+    if (tags.length === 0) {
+        projects.forEach(project => project.matchesTag = true);
+        return;
+    }
+    projects.forEach(card => card.matchesTag = card._project.matchesTags(tags));
 }
 function getTags(projects) {
-    const tagsRaw = projects.reduce((acc, curr) => [...acc, ...curr.tags], []);
+    const tagsRaw = ((projects !== null && projects !== void 0 ? projects : [])).reduce((acc, curr) => { var _a; return [...acc, ...(_a = curr.tags, (_a !== null && _a !== void 0 ? _a : []))]; }, []);
     const tags = Array.from(new Set(tagsRaw));
     const sortedTags = tags.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     createTagsWindow(sortedTags);
 }
 function createTagsWindow(tags) {
-    const tagsWindow = document.querySelector('tags-window');
-    const button = document.getElementById('filterTagsButton');
-    const overlay = Array.from(tagsWindow.children).filter(el => el.classList.contains('overlay'))[0];
-    const window = Array.from(tagsWindow.children).filter(el => el.classList.contains('window'))[0];
-    button.onclick = e => {
-        const pos = e.target.getBoundingClientRect();
-        const x = pos.x - 10;
-        const y = pos.y + pos.height - 10;
-        window.style.left = `${x}px`;
-        window.style.top = `${y}px`;
-        tagsWindow.classList.add('display-block');
-        setTimeout(() => {
-            tagsWindow.classList.add('shown');
-        }, 10);
-    };
-    overlay.onclick = e => {
-        tagsWindow.classList.remove('shown');
-        setTimeout(() => {
-            tagsWindow.classList.remove('display-block');
-        }, 300);
-    };
+    const tagsWindow = new TagsWindow();
+    tagsWindow.tags = tags;
+    tagsWindow.onfilter = filter;
+    tagsWindow.setupListeners();
+    document.body.appendChild(tagsWindow);
 }
 export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF };

@@ -1,6 +1,8 @@
+$futura-font-family: futura-pt, 'Futura', sans-serif;
+
 @mixin main-header {
     color: var(--primary-color);
-    font-family: futura-pt, 'Futura', sans-serif;
+    font-family: $futura-font-family;
     font-size: 4rem;
     text-align: center;
     cursor: default;
@@ -8,7 +10,7 @@
 
 @mixin subheader-style {
     color: var(--opposite-color);
-    font-family: futura-pt, 'Futura', sans-serif;
+    font-family: $futura-font-family;
     font-size: 1.7em;
     font-weight: 700;
     // text-align: center;
@@ -18,7 +20,7 @@
 
 @mixin paragraph-style {
     color: var(--alternate-opposite-color);
-    font-family: futura-pt, 'Futura', sans-serif;
+    font-family: $futura-font-family;
     font-size: 1.1rem;
     text-align: justify;
     line-height: 1.6;
@@ -49,7 +51,7 @@
 
 @mixin card-header {
     color: var(--primary-color);
-    font-family: futura-pt, 'Futura', sans-serif;
+    font-family: $futura-font-family;
     font-size: 3em;
     text-align: start;
     cursor: default;
@@ -59,7 +61,7 @@
     padding-top: 30px;
     color: var(--alternate-opposite-color);
     font-size: 1.3em;
-    font-family: futura-pt, 'Futura', sans-serif;
+    font-family: $futura-font-family;
 }
 
 h1 {

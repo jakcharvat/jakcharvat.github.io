@@ -103,6 +103,8 @@ export default class ProjectCard extends HTMLElement {
         this._matchesQuery = matches
         this.updateVisibility()
     }
+
+
     
     updateVisibility() {
         if (this._matchesQuery && this._matchesTag) {

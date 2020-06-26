@@ -5,7 +5,11 @@ class TagsWindow extends HTMLElement {
     _projects: Project[]
     _tags: string[]
     _title: HTMLHeadingElement
+    _showAllButton: HTMLButtonElement
     _filteredTags: Set<string> = new Set<string>()
+    _tagElements: TagElement[]
+    _windowHeight: number = 0
+    _windowWidth: number = 0
     _onfilter: Function
 
     set projects(projects: Project[]) {
@@ -15,7 +19,7 @@ class TagsWindow extends HTMLElement {
     set tags(tags: string[]) {
         this._tags = tags
 
-        const tagEls = tags.map(tag => {
+        this._tagElements = tags.map(tag => {
             let el = new TagElement()
             el.label = tag
             el.onfilter = (label: string, isOn: boolean) => this.tagChanged(label, isOn)
@@ -28,13 +32,32 @@ class TagsWindow extends HTMLElement {
         const title = document.createElement('h2')
         title.innerHTML = 'Showing all projects'
 
-        window.appendChild(title)
-        tagEls.forEach(tag => window.appendChild(tag))
+        this._showAllButton = document.createElement('button')
+        this._showAllButton.innerHTML = 'clear filters'
+
+        const titleRow = createElement('div', 'title-row')
+        titleRow.appendChild(title)
+        titleRow.appendChild(this._showAllButton)
+
+        const tagsContainer = createElement('div', 'tags-container')
+        this._tagElements.forEach(tag => tagsContainer.appendChild(tag))
+
+        window.appendChild(titleRow)
+        window.appendChild(tagsContainer)
 
         this.appendChild(overlay)
         this.appendChild(window)
 
         this._title = title
+
+        this._showAllButton.onclick = e => {
+            for (const tag of this._tagElements) {
+                tag.isOn = false
+            }
+
+            this._filteredTags = new Set<string>()
+            this.updateTagsUI()
+        }
     }
 
     setupListeners() {
@@ -46,14 +69,11 @@ class TagsWindow extends HTMLElement {
             const buttonRect = button.getBoundingClientRect()
             const windowStyle = globalThis.window.getComputedStyle(window)
 
-            const windowWidth = parseFloat(windowStyle.width)
-            const windowHeight = parseFloat(windowStyle.height)
-
             let x = buttonRect.x
             let y = buttonRect.y
 
-            const endWindowRight = x + windowWidth
-            const endWindowBottom = y + windowHeight
+            const endWindowRight = x + this._windowWidth
+            const endWindowBottom = y + this._windowHeight
             const maxWindowRight = globalThis.window.innerWidth - 20
             const maxWindowBottom = globalThis.window.innerHeight - 20
 
@@ -85,19 +105,25 @@ class TagsWindow extends HTMLElement {
     }
 
     tagChanged(label: string, isOn: boolean) {
-        console.log(this)
-
         if (isOn) {
             this._filteredTags.add(label)
         } else {
             this._filteredTags.delete(label)
         }
 
+        this.updateTagsUI()
+    }
+
+    updateTagsUI() {
         if (this._filteredTags.size === 0) {
             this._title.innerHTML = 'Showing all projects'
+            this._tagElements.forEach(el => el.isDimmed = false)
+            this._showAllButton.classList.remove('shown')
         } else {
             const tagCount = this._filteredTags.size
             this._title.innerHTML = `Filtering ${tagCount} ${tagCount === 1 ? 'tag' : 'tags'}`
+            this._tagElements.forEach(el => el.isDimmed = !this._filteredTags.has(el._label))
+            this._showAllButton.classList.add('shown')
         }
 
         this._onfilter(Array.from(this._filteredTags))
@@ -106,20 +132,25 @@ class TagsWindow extends HTMLElement {
     set onfilter(callback: Function) {
         this._onfilter = callback
     }
+
+    getHeight() {
+        this.className = 'opacity-hidden shown display-shown'
+
+        const rect = this.children[1].getBoundingClientRect()
+        this._windowHeight = rect.height
+        this._windowWidth = rect.width
+
+        this.className = ''
+    }
 }
 
 
 class TagElement extends HTMLElement {
-    _label: string
-    _isOn: boolean
+    _label: string = ''
+    _isOn: boolean = false
+    _isDimmed: boolean = false
     _checkbox: HTMLInputElement
     _onfilter: Function
-
-    constructor() {
-        super()
-        this._label = ''
-        this._isOn = false
-    }
 
     set label(label: string) {
         this._label = label
@@ -146,15 +177,34 @@ class TagElement extends HTMLElement {
         this._onfilter = callback
     }
 
+    set isDimmed(isDimmed: boolean) {
+        this._isDimmed = isDimmed
+
+        if (isDimmed) {
+            this.classList.add('dimmed')
+        } else {
+            this.classList.remove('dimmed')
+        }
+    }
+
+    set isOn(isOn: boolean) {
+        this._isOn = isOn
+        this.updateUI()
+    }
+
     setupListeners() {
         this.onclick = e => {
             e.preventDefault()
             e.stopPropagation()
             
             this._isOn = !this._isOn
-            this._checkbox.checked = this._isOn
-            this._onfilter(this._label, this._isOn)
+            this.updateUI()
         }
+    }
+
+    updateUI() {
+        this._checkbox.checked = this._isOn
+        this._onfilter(this._label, this._isOn)
     }
 }
 

@@ -2,6 +2,7 @@
 
 tags-window {
     $transition-duration: 0.2s;
+    $transition-timinig-function: cubic-bezier(.26,1.6,.61,1);
 
     .overlay {
         z-index: 5;
@@ -37,42 +38,72 @@ tags-window {
         transform: scale(0);
         transition: opacity $transition-duration ease;
 
-        flex-direction: row;
-        flex-wrap: wrap;
         padding: 10px 5px;
 
-        h2 {
-            margin: 5px 10px 10px 10px;
-        }
-
-        tag-element {
-            width: 150px;
-            margin: 5px 10px;
+        .title-row {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            cursor: pointer;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 5px 10px 10px 10px;
 
-            label {
-                margin-left: 10px;
-                @include paragraph-style();
-                @include user-select-none();
-                pointer-events: none;
+            h2 {
+                font-size: 1.4em;
             }
 
-            input[type='checkbox'] {
-                pointer-events: none;
+            button {
+                background: transparent;
+                outline: none;
+                border: none;
+                @include paragraph-style();
+                @include link-style();
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                
+                &.shown {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .tags-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+
+            tag-element {
+                width: 150px;
+                margin: 5px 10px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                cursor: pointer;
+
+                label {
+                    margin-left: 10px;
+                    @include paragraph-style();
+                    @include user-select-none();
+                    pointer-events: none;
+                    display: block;
+                    width: 100%;
+                    transition: opacity 0.2s ease;
+                }
+
+                input[type='checkbox'] {
+                    pointer-events: none;
+                }
+
+                &.dimmed label {
+                    opacity: 0.6;
+                }
             }
         }
     }
 
     &.display-shown {
-        .overlay {
+        .overlay, .window {
             display: block;
-        }
-
-        .window {
-            display: flex;
         }
     }
 
@@ -89,9 +120,12 @@ tags-window {
             opacity: 1;
             transform: scale(1);
 
-            $transition-timinig-function: cubic-bezier(.26,1.6,.61,1);
             transition: opacity $transition-duration ease,
                         transform $transition-duration $transition-timinig-function;
         }
+    }
+
+    &.opacity-hidden {
+        opacity: 0;
     }
 }

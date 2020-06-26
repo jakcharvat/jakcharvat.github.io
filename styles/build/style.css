@@ -262,14 +262,57 @@ tags-window .window {
   display: none;
   transform: scale(0);
   transition: opacity 0.2s ease;
-  flex-direction: row;
-  flex-wrap: wrap;
   padding: 10px 5px;
 }
-tags-window .window h2 {
+tags-window .window .title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
   margin: 5px 10px 10px 10px;
 }
-tags-window .window tag-element {
+tags-window .window .title-row h2 {
+  font-size: 1.4em;
+}
+tags-window .window .title-row button {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: var(--alternate-opposite-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+tags-window .window .title-row button::before {
+  content: "";
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  opacity: 0.8;
+  position: absolute;
+  z-index: -1;
+  background: var(--primary-color);
+  transition: height 0.2s ease, opacity 0.2s ease;
+}
+tags-window .window .title-row button:hover::before {
+  height: 60%;
+  opacity: 0.2;
+}
+tags-window .window .title-row button.shown {
+  opacity: 1;
+}
+tags-window .window .tags-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+tags-window .window .tags-container tag-element {
   width: 150px;
   margin: 5px 10px;
   display: flex;
@@ -277,7 +320,7 @@ tags-window .window tag-element {
   align-items: center;
   cursor: pointer;
 }
-tags-window .window tag-element label {
+tags-window .window .tags-container tag-element label {
   margin-left: 10px;
   color: var(--alternate-opposite-color);
   font-family: futura-pt, "Futura", sans-serif;
@@ -296,15 +339,18 @@ tags-window .window tag-element label {
   /* Internet Explorer/Edge */
   user-select: none;
   pointer-events: none;
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
 }
-tags-window .window tag-element input[type=checkbox] {
+tags-window .window .tags-container tag-element input[type=checkbox] {
   pointer-events: none;
 }
-tags-window.display-shown .overlay {
-  display: block;
+tags-window .window .tags-container tag-element.dimmed label {
+  opacity: 0.6;
 }
-tags-window.display-shown .window {
-  display: flex;
+tags-window.display-shown .overlay, tags-window.display-shown .window {
+  display: block;
 }
 tags-window.shown .overlay {
   opacity: 1;
@@ -315,6 +361,9 @@ tags-window.shown .window {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.26, 1.6, 0.61, 1);
+}
+tags-window.opacity-hidden {
+  opacity: 0;
 }
 
 * {
@@ -755,6 +804,18 @@ noscript .noscript-content h1 {
   font-size: 2em;
   text-align: left;
   margin-bottom: 20px;
+  white-space: normal;
+  word-wrap: normal;
+}
+@media screen and (max-width: 440px) {
+  noscript .noscript-content h1 {
+    font-size: 1.7em;
+  }
+}
+@media screen and (max-width: 350px) {
+  noscript .noscript-content h1 {
+    font-size: 1.3em;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -772,7 +833,7 @@ html .projects-filter-row {
 }
 html .projects-filter-row #nameTFContainer {
   position: relative;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
   flex-grow: 100;
   height: 28px;
 }

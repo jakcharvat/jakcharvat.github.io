@@ -105,7 +105,9 @@ function createTagsWindow(tags: string[]) {
     tagsWindow.tags = tags
     tagsWindow.onfilter = filter
     tagsWindow.setupListeners()
+    
     document.body.appendChild(tagsWindow)
+    tagsWindow.getHeight()
 }
 
 export { getProjects, projectsAnimationInDone, prepareForProjectLoad, initNameTF }

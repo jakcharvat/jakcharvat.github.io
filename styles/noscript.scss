@@ -24,6 +24,20 @@
             font-size: 2em;
             text-align: left;
             margin-bottom: 20px;
+            white-space: normal;
+            word-wrap: normal;
+        }
+
+        @media screen and (max-width: 440px) {
+            h1 {
+                font-size: 1.7em;
+            }
+        }
+
+        @media screen and (max-width: 350px) {
+            h1 {
+                font-size: 1.3em;
+            }
         }
     }
 

@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import './filter-row.js';
 import Project from './project.js';
 import ProjectCard from './project-card.js';
 import TagsWindow from './tags-window.js';

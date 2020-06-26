@@ -1,3 +1,4 @@
+import './filter-row.js'
 import Project, { ProjectDict } from './project.js'
 import ProjectCard from './project-card.js'
 import TagsWindow from './tags-window.js'

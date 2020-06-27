@@ -13,6 +13,11 @@
             display: flex;
         }
 
+        &.opacity-hidden {
+            transition: opacity 0.35s ease;
+            opacity: 0;
+        }
+
         &.stuck {
             position: fixed;
             top: 12px;

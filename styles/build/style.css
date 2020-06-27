@@ -837,6 +837,10 @@ html filter-row {
 html filter-row.shown {
   display: flex;
 }
+html filter-row.opacity-hidden {
+  transition: opacity 0.35s ease;
+  opacity: 0;
+}
 html filter-row.stuck {
   position: fixed;
   top: 12px;

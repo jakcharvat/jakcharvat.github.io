@@ -59,6 +59,9 @@ class FilterRow extends HTMLElement {
     }
     onScroll() {
         var _a;
+        if (window.location.pathname !== '/projects/') {
+            return;
+        }
         const parentOffsetTop = (_a = this._parent, (_a !== null && _a !== void 0 ? _a : this.parentElement)).offsetTop;
         const diff = this._initialParentOffsetTop - parentOffsetTop;
         const offset = (this._initialOffsetTop - diff) + parentOffsetTop;
@@ -95,6 +98,13 @@ class FilterRow extends HTMLElement {
         this.style.transform = containerStyle.transform;
         this.style.width = containerStyle.width;
         this.style.maxWidth = containerStyle.maxWidth;
+    }
+    removeIfStuck() {
+        if (this.parentElement !== document.body) {
+            return;
+        }
+        this.classList.add('opacity-hidden');
+        setTimeout(() => this.remove(), 350);
     }
 }
 customElements.define('filter-row', FilterRow);

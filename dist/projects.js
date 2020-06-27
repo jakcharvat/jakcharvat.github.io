@@ -12,6 +12,7 @@ import Project from './project.js';
 import ProjectCard from './webcomponents/project-card.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
+let filterRow;
 function getProjects() {
     return __awaiter(this, void 0, void 0, function* () {
         const projectsFile = yield fetch('../projects/projects.json');
@@ -24,7 +25,7 @@ function getProjects() {
             containerElement.appendChild(el);
         }
         hasLoadedProjects = true;
-        const filterRow = document.querySelector('filter-row');
+        filterRow = document.querySelector('filter-row');
         filterRow.initRow(projects);
         fetchFullresImages();
     });
@@ -44,4 +45,7 @@ function prepareForProjectLoad() {
     hasLoadedProjects = false;
     hasAnimationInFinished = false;
 }
-export { getProjects, projectsAnimationInDone, prepareForProjectLoad };
+function transitionStartHandler() {
+    filterRow.removeIfStuck();
+}
+export { getProjects, projectsAnimationInDone, prepareForProjectLoad, transitionStartHandler, };

@@ -6,6 +6,8 @@ import FilterRow from './webcomponents/filter-row.js'
 let hasAnimationInFinished = false
 let hasLoadedProjects = false
 
+let filterRow: FilterRow
+
 async function getProjects() {
     const projectsFile = await fetch('../projects/projects.json')
     const projects = (await projectsFile.json() as ProjectDict[]).map(dict => new Project(dict))
@@ -22,7 +24,7 @@ async function getProjects() {
 
     hasLoadedProjects = true
     
-    const filterRow = document.querySelector('filter-row') as FilterRow
+    filterRow = document.querySelector('filter-row') as FilterRow
     filterRow.initRow(projects)
 
     fetchFullresImages()
@@ -49,4 +51,13 @@ function prepareForProjectLoad() {
     hasAnimationInFinished = false
 }
 
-export { getProjects, projectsAnimationInDone, prepareForProjectLoad }
+function transitionStartHandler() {
+    filterRow.removeIfStuck()
+}
+
+export { 
+    getProjects,
+    projectsAnimationInDone,
+    prepareForProjectLoad,
+    transitionStartHandler,
+}

@@ -83,6 +83,8 @@ class FilterRow extends HTMLElement {
     }
 
     onScroll() {
+        if (window.location.pathname !== '/projects/') { return }
+
         const parentOffsetTop = (this._parent ?? this.parentElement).offsetTop
         const diff = this._initialParentOffsetTop - parentOffsetTop
         const offset = (this._initialOffsetTop - diff) + parentOffsetTop
@@ -122,6 +124,13 @@ class FilterRow extends HTMLElement {
         this.style.transform = containerStyle.transform
         this.style.width = containerStyle.width
         this.style.maxWidth = containerStyle.maxWidth
+    }
+
+    removeIfStuck() {
+        if (this.parentElement !== document.body) { return }
+
+        this.classList.add('opacity-hidden')
+        setTimeout(() => this.remove(), 350)
     }
 }
 

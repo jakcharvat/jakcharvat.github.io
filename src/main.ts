@@ -1,17 +1,20 @@
 import { 
-    getProjects, 
-    projectsAnimationInDone, 
+    getProjects,
+    projectsAnimationInDone,
     prepareForProjectLoad,
+    transitionStartHandler,
 } from './projects.js'
 
 // @ts-ignore
 const swup = new Swup()
 
-swup.on('animationInDone', animationInDone)
+swup.on('animationInDone', onAnimationInDone)
 swup.on('contentReplaced', activateLink)
+swup.on('transitionStart', onTransitionStart)
+
 window.onload = () => {
     activateLink()
-    animationInDone()
+    onAnimationInDone()
 }
 
 const links = Array.from(document.getElementById('nav').children).filter((el: HTMLElement) => {
@@ -58,8 +61,14 @@ function activateLink() {
 }
 
 
-function animationInDone() {
+function onAnimationInDone() {
     if (window.location.pathname === '/projects/') {
         projectsAnimationInDone()
+    }
+}
+
+function onTransitionStart() {
+    if (window.location.pathname === '/projects/') {
+        transitionStartHandler()
     }
 }

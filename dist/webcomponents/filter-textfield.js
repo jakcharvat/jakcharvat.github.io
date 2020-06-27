@@ -1,25 +1,44 @@
-import style from './filter-textfield-style.js';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 class FilterTextfield extends HTMLElement {
     constructor(onchane) {
         super();
-        this.attachShadow({ mode: "open" });
-        this.changeHandler = onchane;
-        const styleEl = document.createElement('style');
-        styleEl.innerHTML = style;
-        const container = document.createElement('div');
-        container.id = 'nameTFContainer';
-        this.containerElement = container;
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = 'nameTF';
-        input.id = 'nameTF';
-        input.placeholder = 'Search';
-        input.autocomplete = 'off';
-        this.inputElement = input;
-        this.shadowRoot.appendChild(styleEl);
-        container.appendChild(input);
-        this.shadowRoot.appendChild(container);
-        this.init();
+        this.setup(onchane);
+    }
+    setup(onchane) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.attachShadow({ mode: "open" });
+            this.changeHandler = onchane;
+            const styleEl = document.createElement('style');
+            styleEl.innerHTML = yield this.getStyle();
+            const container = document.createElement('div');
+            container.id = 'nameTFContainer';
+            this.containerElement = container;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'nameTF';
+            input.id = 'nameTF';
+            input.placeholder = 'Search';
+            input.autocomplete = 'off';
+            this.inputElement = input;
+            this.shadowRoot.appendChild(styleEl);
+            container.appendChild(input);
+            this.shadowRoot.appendChild(container);
+            this.init();
+        });
+    }
+    getStyle() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const res = yield fetch('../../styles/build/filter-tf-styles.css');
+            return yield res.text();
+        });
     }
     init() {
         let placeholderText = this.inputElement.getAttribute('placeholder');

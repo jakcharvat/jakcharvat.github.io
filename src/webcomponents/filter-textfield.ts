@@ -1,5 +1,3 @@
-import style from './filter-textfield-style.js'
-
 class FilterTextfield extends HTMLElement {
     inputElement: HTMLInputElement
     containerElement: HTMLDivElement
@@ -7,13 +5,16 @@ class FilterTextfield extends HTMLElement {
 
     constructor(onchane: Function) {
         super()
+        this.setup(onchane)
+    }
 
+    async setup(onchane: Function) {
         this.attachShadow({mode: "open"})
 
         this.changeHandler = onchane
 
         const styleEl = document.createElement('style')
-        styleEl.innerHTML = style
+        styleEl.innerHTML = await this.getStyle()
         
         const container = document.createElement('div')
         container.id = 'nameTFContainer'
@@ -32,6 +33,12 @@ class FilterTextfield extends HTMLElement {
         this.shadowRoot.appendChild(container)
 
         this.init()
+    }
+
+
+    async getStyle(): Promise<string> {
+        const res = await fetch('../../styles/build/filter-tf-styles.css')
+        return await res.text()
     }
 
 

@@ -12,6 +12,8 @@ class FilterRow extends HTMLElement {
     constructor() {
         super()
 
+        Array.from(this.children).forEach(el => el.remove())
+
         const tf = new FilterTextfield((str?: string) => this.search(str))
         const button = document.createElement('button')
         button.id = 'filterTagsButton'

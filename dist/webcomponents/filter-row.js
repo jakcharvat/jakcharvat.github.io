@@ -4,6 +4,7 @@ import FilterTextfield from "./filter-textfield.js";
 class FilterRow extends HTMLElement {
     constructor() {
         super();
+        Array.from(this.children).forEach(el => el.remove());
         const tf = new FilterTextfield((str) => this.search(str));
         const button = document.createElement('button');
         button.id = 'filterTagsButton';

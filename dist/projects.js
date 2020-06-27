@@ -13,8 +13,10 @@ import ProjectCard from './webcomponents/project-card.js';
 let hasAnimationInFinished = false;
 let hasLoadedProjects = false;
 let filterRow;
+let requestedFilter;
 function getProjects() {
     return __awaiter(this, void 0, void 0, function* () {
+        requestedFilter = getURLParameters()['filter'];
         const projectsFile = yield fetch('../projects/projects.json');
         const projects = (yield projectsFile.json()).map(dict => new Project(dict));
         const containerElement = document.getElementById('projectsGrid');
@@ -48,4 +50,22 @@ function prepareForProjectLoad() {
 function transitionStartHandler() {
     filterRow.removeIfStuck();
 }
-export { getProjects, projectsAnimationInDone, prepareForProjectLoad, transitionStartHandler, };
+function isOnProjectsPage() {
+    const pathName = window.location.pathname;
+    return pathName === '/projects/' || pathName === '/projects/index.html';
+}
+function getURLParameters() {
+    let paramsString = window.location.search;
+    if (paramsString === '') {
+        return {};
+    }
+    paramsString = paramsString.replace('?', '');
+    const paramsArr = paramsString.split('&');
+    let params = {};
+    paramsArr.forEach(param => {
+        const split = param.split('=');
+        params[split[0]] = split[1];
+    });
+    return params;
+}
+export { getProjects, projectsAnimationInDone, prepareForProjectLoad, transitionStartHandler, isOnProjectsPage, requestedFilter, };

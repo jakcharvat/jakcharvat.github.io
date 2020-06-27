@@ -1,6 +1,7 @@
 import TagsWindow from "./tags-window.js";
 import "./filter-textfield.js";
 import FilterTextfield from "./filter-textfield.js";
+import { isOnProjectsPage } from "../projects.js";
 class FilterRow extends HTMLElement {
     constructor() {
         super();
@@ -59,7 +60,7 @@ class FilterRow extends HTMLElement {
     }
     onScroll() {
         var _a;
-        if (window.location.pathname !== '/projects/') {
+        if (!isOnProjectsPage()) {
             return;
         }
         const parentOffsetTop = (_a = this._parent, (_a !== null && _a !== void 0 ? _a : this.parentElement)).offsetTop;

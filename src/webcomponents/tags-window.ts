@@ -1,5 +1,6 @@
 import { createElement } from "../dom-manipulations.js"
 import Project from '../project.js';
+import { requestedFilter } from "../projects.js";
 
 class TagsWindow extends HTMLElement {
     _projects: Project[]
@@ -105,6 +106,10 @@ class TagsWindow extends HTMLElement {
     }
 
     tagChanged(label: string, isOn: boolean) {
+        const tagEl = this._tagElements.filter(el => el._label === label)[0]
+        tagEl._checkbox.checked = isOn
+        tagEl._isOn = isOn
+
         if (isOn) {
             this._filteredTags.add(label)
         } else {
@@ -131,6 +136,10 @@ class TagsWindow extends HTMLElement {
 
     set onfilter(callback: Function) {
         this._onfilter = callback
+
+        if (requestedFilter && this._tags.includes(requestedFilter)) {
+            this.tagChanged(requestedFilter, true)
+        }
     }
 
     getHeight() {

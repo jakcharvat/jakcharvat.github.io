@@ -7,8 +7,11 @@ let hasAnimationInFinished = false
 let hasLoadedProjects = false
 
 let filterRow: FilterRow
+let requestedFilter: string
 
 async function getProjects() {
+    requestedFilter = getURLParameters()['filter']
+
     const projectsFile = await fetch('../projects/projects.json')
     const projects = (await projectsFile.json() as ProjectDict[]).map(dict => new Project(dict))
 
@@ -55,9 +58,34 @@ function transitionStartHandler() {
     filterRow.removeIfStuck()
 }
 
+function isOnProjectsPage(): boolean {
+    const pathName = window.location.pathname
+    return pathName === '/projects/' || pathName === '/projects/index.html'
+}
+
+
+function getURLParameters(): {} {
+    let paramsString = window.location.search
+    if (paramsString === '') { return {} }
+
+    paramsString = paramsString.replace('?', '')
+    const paramsArr = paramsString.split('&')
+    
+    let params = {}
+    paramsArr.forEach(param =>  {
+        const split = param.split('=')
+        params[split[0]] = split[1]
+    })
+
+    return params
+}
+
+
 export { 
     getProjects,
     projectsAnimationInDone,
     prepareForProjectLoad,
     transitionStartHandler,
+    isOnProjectsPage,
+    requestedFilter,
 }

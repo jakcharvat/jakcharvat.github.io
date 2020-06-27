@@ -3,6 +3,7 @@ import Project from "../project.js"
 import TagsWindow from "./tags-window.js"
 import  "./filter-textfield.js"
 import FilterTextfield from "./filter-textfield.js"
+import { isOnProjectsPage } from "../projects.js"
 
 class FilterRow extends HTMLElement {
     _parent: HTMLElement
@@ -83,7 +84,7 @@ class FilterRow extends HTMLElement {
     }
 
     onScroll() {
-        if (window.location.pathname !== '/projects/') { return }
+        if (!isOnProjectsPage()) { return }
 
         const parentOffsetTop = (this._parent ?? this.parentElement).offsetTop
         const diff = this._initialParentOffsetTop - parentOffsetTop

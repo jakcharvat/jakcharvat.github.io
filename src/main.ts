@@ -3,7 +3,12 @@ import {
     projectsAnimationInDone,
     prepareForProjectLoad,
     transitionStartHandler,
+    isOnProjectsPage,
 } from './projects.js'
+
+import {
+    initAboutPage,
+} from './about.js'
 
 // @ts-ignore
 const swup = new Swup()
@@ -38,7 +43,7 @@ function activateLink() {
     for (let link of links) {
         const linkAddr = link.pathname
         
-        if (linkAddr === address) {
+        if (address === linkAddr || address === `${linkAddr}index.html`) {
             if (!link.classList.contains('active')) {
                 link.classList.add('active')
             }
@@ -54,21 +59,28 @@ function activateLink() {
     }
 
 
-    if (address === '/projects/') {
+    if (isOnProjectsPage()) {
         prepareForProjectLoad()
         getProjects()
+    }
+
+    if (address === '/about/') {
+        initAboutPage()
     }
 }
 
 
 function onAnimationInDone() {
-    if (window.location.pathname === '/projects/') {
+    if (isOnProjectsPage()) {
         projectsAnimationInDone()
     }
 }
 
 function onTransitionStart() {
-    if (window.location.pathname === '/projects/') {
+    if (isOnProjectsPage()) {
         transitionStartHandler()
     }
 }
+
+
+export { swup }

@@ -1,0 +1,87 @@
+tag-element {
+  width: 150px;
+  margin: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+label {
+  margin-left: 10px;
+  color: var(--alternate-opposite-color);
+  font-family: futura-pt, "Futura", sans-serif;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  pointer-events: none;
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
+}
+tag-element input[type=checkbox] {
+  pointer-events: none;
+}
+tag-element.dimmed label {
+  opacity: 0.6;
+}
+input[type=checkbox].filter-checkbox {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  position: relative;
+  background-color: rgba(var(--primary-color-rgb), 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  transition: background 0.2s ease;
+}
+input[type=checkbox].filter-checkbox::before, input[type=checkbox].filter-checkbox::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background: var(--background-color);
+  border-radius: 1px;
+}
+input[type=checkbox].filter-checkbox::before {
+  left: 3px;
+  bottom: 5px;
+  height: 6px;
+  transform-origin: top;
+  transform: rotate(-45deg) scaleY(0) translateY(1px);
+  transition: transform 0.1s 0.1s ease-out;
+}
+input[type=checkbox].filter-checkbox::after {
+  left: 6px;
+  bottom: 6px;
+  height: 11px;
+  transform-origin: bottom;
+  transform: rotate(45deg) scaleY(0);
+  transition: transform 0.1s ease-in;
+}
+input[type=checkbox].filter-checkbox:checked {
+  background: var(--primary-color);
+}
+input[type=checkbox].filter-checkbox:checked::before {
+  transform: rotate(-45deg) scaleY(1) translateY(1px);
+  transition: transform 0.1s ease-in;
+}
+input[type=checkbox].filter-checkbox:checked::after {
+  transform: rotate(45deg) scaleY(1);
+  transition: transform 0.1s 0.1s ease-out;
+}

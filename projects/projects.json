@@ -1,5 +1,32 @@
 [
     {
+        "title": "SwiftUI Bottom Sheet",
+        "url": "https://github.com/jakcharvat/SwiftUIBottomSheet/wiki",
+        "repoURL": "https://github.com/jakcharvat/SwiftUIBottomSheet",
+        "lowResImage": "SwiftUIBottomSheet_low.png",
+        "highResImage": "SwiftUIBottomSheet_high.png",
+        "tags": ["Swift", "SwiftUI", "iOS", "open-source"],
+        "description": "A mostly pure SwiftUI implementation of the bottom sheet design seen in many of Apple's default apps, like Maps or Stocks. Written fully in Swift, only supports iOS 14 and newer."
+    },
+    {
+        "title": "Advent of Code",
+        "url": "//TODO: Add URL",
+        "repoURL": "https://github.com/jakcharvat/AdventOfCode",
+        "lowResImage": "AdventOfCode_low.png",
+        "highResImage": "AdventOfCode_high.png",
+        "tags": ["Swift", "SwiftUI", "UIKit", "aoc", "iOS"],
+        "description": "An iOS app for all my Advent of Code challenge solutions from the years. Each challenge has its own isolated runtime, stats and the ability to view the challenge or the source code of the solution."
+    },
+    {
+        "title": "Value of Education",
+        "url": "value_of_education/v2/#/",
+        "repoURL": "https://github.com/jakcharvat/value-of-education",
+        "lowResImage": "ValueOfEducation_low.png",
+        "highResImage": "ValueOfEducation_high.png",
+        "tags": ["Flutter", "Dart", "web", "school", "literature"],
+        "description": "A project I wrote as a creative task for my English Language and Literature course. Written in Dart using Google's Flutter framework, it combines literacy and education data around the world, and compares it to the situation described in Arthur Miller's play A View from the Bridge."
+    },
+    {
         "title": "Bootstrap Experiments",
         "url": "bootstrap/",
         "repoURL": "https://github.com/jakcharvat/bootstrap-experiments",
@@ -16,11 +43,5 @@
         "highResImage": "Nim_high.png",
         "tags": ["Flutter", "Dart", "iOS", "android", "macOS", "web", "cross-platform"],
         "description": "This is a Flutter implementation of the classic mathematical Nim game. Complete with an AI opponent, options to start first or second, as well as the option to play against a human player. "
-    },
-    {
-
-    },
-    {
-        
     }
 ]

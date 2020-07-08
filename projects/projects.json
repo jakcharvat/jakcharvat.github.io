@@ -18,6 +18,15 @@
         "description": "An iOS app for all my Advent of Code challenge solutions from the years. Each challenge has its own isolated runtime, stats and the ability to view the challenge or the source code of the solution."
     },
     {
+        "title": "MHD Icons",
+        "url": "https://sketch.com/s/a6fc915c-7c2c-421d-a2f0-99178786a189",
+        "repoURL": "https://github.com/jakcharvat/MHDIcons",
+        "lowResImage": "MHDIcons_low.png",
+        "highResImage": "MHDIcons_high.png",
+        "tags": ["Design", "Sketch"],
+        "description": ""
+    },
+    {
         "title": "Value of Education",
         "url": "value_of_education/v2/#/",
         "repoURL": "https://github.com/jakcharvat/value-of-education",

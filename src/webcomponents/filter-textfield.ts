@@ -8,10 +8,10 @@ class FilterTextfield extends HTMLElement {
         this.setup(onchane)
     }
 
-    async setup(onchane: Function) {
+    async setup(onchange: Function) {
         this.attachShadow({mode: "open"})
 
-        this.changeHandler = onchane
+        this.changeHandler = onchange
 
         const styleEl = document.createElement('style')
         styleEl.innerHTML = await this.getStyle()
@@ -49,7 +49,7 @@ class FilterTextfield extends HTMLElement {
             this.inputElement.classList.add('label-hidden')
         }
     
-        this.inputElement.oninput = e => {
+        this.inputElement.oninput = _ => {
             if (this.inputElement.value.trim() === '') {
                 this.inputElement.value = this.inputElement.value.trim()
                 this.containerElement.classList.remove('has-input')

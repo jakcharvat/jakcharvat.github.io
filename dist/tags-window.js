@@ -117,7 +117,7 @@ class TagElement extends HTMLElement {
         this._isOn = false;
         this._isDimmed = false;
     }
-    set label(label) {
+    set label(label: string) {
         this._label = label;
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -126,7 +126,7 @@ class TagElement extends HTMLElement {
         checkbox.className = 'filter-checkbox';
         const labelEl = document.createElement('label');
         labelEl.htmlFor = `${label}Checkbox`;
-        labelEl.innerHTML = label;
+        labelEl.innerHTML = label.toLowerCase();
         this.appendChild(checkbox);
         this.appendChild(labelEl);
         this._checkbox = checkbox;

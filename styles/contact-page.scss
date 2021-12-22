@@ -1,0 +1,13 @@
+.contact-page {
+    display: flex;
+
+    &>p {
+        // max-width: 300px;
+        padding-right: 60px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+}

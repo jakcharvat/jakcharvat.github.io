@@ -172,7 +172,7 @@ class TagElement extends HTMLElement {
 
         const labelEl = document.createElement('label')
         labelEl.htmlFor = `${label}Checkbox`
-        labelEl.innerHTML = label
+        labelEl.innerHTML = label.toLowerCase()
 
         this.appendChild(checkbox)
         this.appendChild(labelEl)

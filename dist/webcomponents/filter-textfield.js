@@ -12,10 +12,10 @@ class FilterTextfield extends HTMLElement {
         super();
         this.setup(onchane);
     }
-    setup(onchane) {
+    setup(onchange) {
         return __awaiter(this, void 0, void 0, function* () {
             this.attachShadow({ mode: "open" });
-            this.changeHandler = onchane;
+            this.changeHandler = onchange;
             const styleEl = document.createElement('style');
             styleEl.innerHTML = yield this.getStyle();
             const container = document.createElement('div');
@@ -46,7 +46,7 @@ class FilterTextfield extends HTMLElement {
             this.containerElement.setAttribute('data-label', placeholderText);
             this.inputElement.classList.add('label-hidden');
         }
-        this.inputElement.oninput = e => {
+        this.inputElement.oninput = _ => {
             if (this.inputElement.value.trim() === '') {
                 this.inputElement.value = this.inputElement.value.trim();
                 this.containerElement.classList.remove('has-input');

@@ -366,6 +366,17 @@ tags-window.opacity-hidden {
   opacity: 0;
 }
 
+.contact-page {
+  display: flex;
+}
+.contact-page > p {
+  padding-right: 60px;
+}
+.contact-page form {
+  display: flex;
+  flex-direction: column;
+}
+
 * {
   padding: 0;
   margin: 0;
